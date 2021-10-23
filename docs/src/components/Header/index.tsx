@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
+import { Button } from "../../common/Button";
 import { SvgIcon } from "../../common/SvgIcon";
 
 import {
@@ -43,14 +44,24 @@ const Header = ({ t }: any) => {
         <CustomNavLinkSmall onClick={() => scrollTo("about")}>
           <Span>{t("About Us")}</Span>
         </CustomNavLinkSmall>
-        {/* <CustomNavLinkSmall
-          style={{ width: "180px" }}
-          onClick={() => scrollTo("contact")}
+        <CustomNavLinkSmall
+          style={{ width: "100px" }}
         >
           <Span>
-            <Button>{t("Contact")}</Button>
+            <Button
+              onClick={() =>  window.location.href='/login'}
+            >{t("Login")}</Button>
           </Span>
-        </CustomNavLinkSmall> */}
+        </CustomNavLinkSmall>
+        <CustomNavLinkSmall
+          style={{ width: "100px" }}
+        >
+          <Span>
+            <Button
+              onClick={() =>  window.location.href='/sign-up'}
+            >{t("Sign Up")}</Button>
+          </Span>
+        </CustomNavLinkSmall>
       </>
     );
   };
