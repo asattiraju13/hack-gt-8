@@ -119,7 +119,7 @@ def login_info():
 
         user.__dict__
 
-    return render_template('index.html')
+    return "login"
 
 
 if __name__ == "__main__":
