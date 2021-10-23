@@ -101,10 +101,12 @@
         background: #373737;
       }
 
-      .submmit-box {
-          background: #373737;
+      .submit-box {
+          background-color: #373737;
           border: none;
           border-radius: 6px;
+          width: 50%;
+          margin-left: 25%;
       }
 
       .arrow-svg {
@@ -116,8 +118,20 @@
       }
 
       .back-button {
-        background-color: #373737;
+        position: absolute;
+        left: 2.29%;
+        right: 90.05%;
+        top: 5.37%;
+        bottom: 89.54%;
+        width: 4%;
         border: none;
+
+        background: #373737;
+        border-radius: 13px;
+      }
+
+      .back-button:hover {
+        transform: 120%;
       }
 
 	</style>
@@ -125,9 +139,12 @@
   </head>
   <body>
 	<div class="home">
-            <button class="back-button">
-                    <svg class = "arrow-svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#F8F0E3"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
-            </button>
+        <button class="back-button">
+          <svg class ="arrow-svg"width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.3949 35.2355L23.8344 32.7402L13.9592 23.0689L35.2554 22.8278L35.2158 19.328L13.9196 19.5691L23.5733 9.67667L21.078 7.23726L7.23737 21.3948L21.3949 35.2355Z" fill="#F8F0E3"/>
+            </svg>
+            
+        </button>
 
 
         <div class="container-for-form">
@@ -141,11 +158,10 @@
                     <input class = "input-box" type="text" placeholder="trenwhite@gatech.edu" name="uname" required>
 
                     <input class = "input-box" type="password" placeholder="Enter Password" name="psw" required>
-                    <div class="arrow-container">
-                        <button class = "submit-box" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#F8F0E3"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
-                        </button>
-                    </div>
+                    <button class = "submit-box" type="submit">
+                        <svg class = "arrow-svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#F8F0E3"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+                    </button>
+
 <!-- 
                     <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
