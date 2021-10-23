@@ -49,7 +49,7 @@ const Header = ({ t }: any) => {
         >
           <Span>
             <Button
-              onClick={() =>  window.location.href='http://127.0.0.1:5500/'}
+              onClick={() =>  window.location.href='http://127.0.0.1:5500/backend/templates/signup.html'}
             >{t("Login")}</Button>
           </Span>
         </CustomNavLinkSmall>
@@ -58,7 +58,7 @@ const Header = ({ t }: any) => {
         >
           <Span>
             <Button
-              onClick={() =>  window.location.href='/sign-up'}
+              onClick={() =>  window.location.href='http://127.0.0.1:5500/backend/templates/signup.html'}
             >{t("Sign Up")}</Button>
           </Span>
         </CustomNavLinkSmall>
