@@ -1,5 +1,13 @@
 {
     "files.exclude": {
         "**/.git": false
-    }
+    },
+    "cSpell.words": [
+        "Abhinav",
+        "Bhargava",
+        "Darshan",
+        "Krishnaswamy",
+        "Sattiraju",
+        "Yatharth"
+    ]
 }

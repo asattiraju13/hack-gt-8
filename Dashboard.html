@@ -2,148 +2,150 @@
   <head>
 	<title>Yatharth</title>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <style>
-		body {
-			margin: 0;
-			overflow-x: hidden;
-			scrollbar-width: thin;
-		}
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
-		html {
-			--scrollbarBG: #b7ff00;
-			--thumbBG: rgb(16, 18, 19);
-			-webkit-user-select: none;
-			-khtml-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			-o-user-select: none;
-			user-select: none;
-		}
-		body::-webkit-scrollbar {
-		width: 11px;
-		}
-		body {
-		scrollbar-width: thin;
-		scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-		}
-		body::-webkit-scrollbar-track {
-		background: var(--scrollbarBG);
-		}
-		body::-webkit-scrollbar-thumb {
-		background-color: var(--thumbBG) ;
-		border-radius: 6px;
-		border: 3px solid var(--scrollbarBG);
-		}
+    * {
+    transition: all 0.3s ease-out;
+    }
+    html,
+    body {
+      height: 100%;
+      background-color: #F8F0E3;
+      font-family: "Nunito", sans-serif;
+      font-size: 16px;
+      }
+    .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    }
 
-        @font-face {
-        font-family: heading-font;
-        src: url(TestTiemposHeadline-Regular.otf);
-        }
+    h3 {
+    color: #313131;
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    }
 
-        @font-face {
-        font-family: body-font;
-        src: url(Inconsolata-Regular.ttf);
-        }
+    p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #404040;
+    }
 
-      .home {
-		  width: 100vw;
-		  height: 100vh;
-		  background-color: #373737;
-		  display:flex;
-	  }
+    small {
+    font-size: 14px;
+    }
 
-      .back-button {
-        position: absolute;
-        left: 2.29%;
-        right: 90.05%;
-        top: 5.37%;
-        bottom: 89.54%;
-        background: #373737;
-        border-radius: 13px;
-        padding: 0;
-        border: none;
-
+    .go-corner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+      width: 32px;
+      height: 32px;
+      overflow: hidden;
+      top: 0;
+      right: 0;
+      background-color: #373737;
+      border-radius: 0 4px 0 32px;
       }
 
-      h1 {
-          font-size: 90px;
-          text-align: left;
-          font-family: heading-font;
-          padding-left: 5%;
+    .go-arrow {
+    margin-top: -4px;
+    margin-right: -4px;
+    color: #F8F0E3;
+    font-family: courier, sans;
+    }
+    .card1 {
+    display: block;
+    position: relative;
+    max-width: 262px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 32px 24px;
+    margin: 12px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    }
 
-          color: #F8F0E3;
-      }
-      .card {
-        display: flex;
-        height: 200px;
-        width: 200px;
-        background-color: #F8F0E3;
-        border-radius: 10px;
-        box-shadow: -1rem 0 3rem #000;
-        /*   margin-left: -50px; */
-        transition: 0.4s ease-out;
-        position: relative;
-        left: 0px;
-        }
+    .card1:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: #373737;
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+    }
 
-        .card:not(:first-child) {
-            margin-left: -50px;
-        }
+    .card1:hover:before {
+    transform: scale(21);
+    }
 
-        .card:hover {
-        transform: translateY(-20px);
-        transition: 0.4s ease-out;
-        box-shadow: -1rem 0 3rem orange;
-        }
+    .card1:hover p {
+    transition: all 0.3s ease-out;
+    color: rgba(248, 240, 227, 0.75);
+    }
+    .card1:hover h3 {
+    transition: all 0.3s ease-out;
+    color: #F8F0E3;
+    }
 
-        .card:hover ~ .card {
-        position: relative;
-        left: 50px;
-        transition: 0.4s ease-out;
-        }
+    h1 {
+    font-size: 90px;
+    text-align: left;
+    font-family: heading-font;
+    padding-left: 5%;
 
-        .title {
-        color: #373737;
-        font-weight: 300;
-        position: absolute;
-        left: 20px;
-        top: 15px;
-        font-family: body-font;
-        }
-
-        .cards {
-            display: flex;
-            align-items: center;
-        }
+    color: #373737;
+    }
 	</style>
-	
   </head>
   <body>
 	<div class="home">
-        <h1>Dashboard.</h1>
-        <div class="cards">
-            <div class="card">
-                <h2 class="title">ENGL 1101</h3>
-    
-              </div>
-              <div class="card">
-                <h2 class="title">MATH 1554</h3>
-              </div>
-              <div class="card">
-                <h2 class="title">CS 1331</h3>
-              </div>
-              <div class="card">
-                <h2 class="title">CS 1100</h3>
-              </div>
-              <div class="card">
-                <h2 class="title">PUBP 1142</h3>
-              </div>
-              <div class="card">
-                <h2 class="title">CS 2050</h3>
-              </div>
+    <h1>Dashboard.</h1>
+    <div class="container">
+      <a class="card1" href="#">
+        <h3>ENGL 1101</h3>
+        <p class="small">Card description with lots of great facts and interesting details.</p>
+        <div class="go-corner" href="#">
+          <div class="go-arrow">
+            →
+          </div>
         </div>
-
+      </a>
+      <a class="card1" href="#">
+        <h3>CS 1331</h3>
+        <p class="small">Card description with lots of great facts and interesting details.</p>
+        <div class="go-corner" href="#">
+          <div class="go-arrow">
+            →
+          </div>
+          </div>
+        </a>
+        <a class="card1" href="#">
+          <h3>MATH 1554</h3>
+          <p class="small">Card description with lots of great facts and interesting details.</p>
+          <div class="go-corner" href="#">
+            <div class="go-arrow">
+              →
+            </div>
+          </div>
+        </a>
+    </div>
 	</div>
-	
   </body>
 </html>
