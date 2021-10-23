@@ -45,12 +45,21 @@ const Header = ({ t }: any) => {
           <Span>{t("About Us")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
-          style={{ width: "180px" }}
+          style={{ width: "100px" }}
+        >
+          <Span>
+            <Button
+              onClick={() =>  window.location.href='/login'}
+            >{t("Login")}</Button>
+          </Span>
+        </CustomNavLinkSmall>
+        <CustomNavLinkSmall
+          style={{ width: "100px" }}
         >
           <Span>
             <Button
               onClick={() =>  window.location.href='/sign-up'}
-            >{t("Login")}</Button>
+            >{t("Sign Up")}</Button>
           </Span>
         </CustomNavLinkSmall>
       </>
