@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const WindowContainer = styled("div")`
-  width: auto;
+  width: 100vw;
   height: 100vh;
   color: #373737;
 `;
@@ -18,12 +18,14 @@ export const RightBlockContainer = styled("section")`
   height: 100vh;
   color: #F8F0E3;
   margin-left: 0;
+  padding-top: calc(50% - 800px);
+
   @media only screen and (max-width: 1024px) {
-    padding: 0rem 0 6rem;
+    padding: 0rem 0 9rem;
   }
 
   @media only screen and (max-width: 768px) {
-    padding: 0rem 0 3rem;
+    padding: 0rem 0 6rem;
   }
 `;
 
@@ -39,7 +41,7 @@ export const ContentWrapper = styled("div")`
   color: #F8F0E3;
 
   @media only screen and (max-width: 575px) {
-    padding-bottom: 4rem;
+    padding-bottom: 5rem;
   }
 `;
 
