@@ -1,6 +1,6 @@
 #Flask App
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask import url_for
@@ -45,9 +45,7 @@ class Class(db.Model):
     class_id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, unique = True)
     #notes = db.relationship('Note', backref='class', lazy=True, uselist=False)
-    users = db.relationship('User',secondary=user_to_classes, backref=db.backref('users_to_classes_backref', lazy='dynamic'))
-    posts = db.relationship('Post',backref='class',lazy='dynamic',secondary=class_to_posts)
-
+    
     def __init__(self, name, notes, posts):
         self.name = name
         self.notes = notes
@@ -108,8 +106,11 @@ posts_schema = PostSchema(many=True)
 def hello_world():
     return "hello world"
 
-# @app.route('/login',methods=['POST'])
-# def login_info():
+@app.route('/login',methods=['POST'])
+def login_info():
+    return render_template('index.html')
+
+    
     
     
 if __name__ == "__main__":
