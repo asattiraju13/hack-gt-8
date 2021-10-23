@@ -101,6 +101,8 @@ notes_schema = NoteSchema(many=True)
 post_schema = PostSchema()
 posts_schema = PostSchema(many=True)
 
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
 
 @app.route('/')
 def hello_world():
@@ -108,10 +110,18 @@ def hello_world():
 
 @app.route('/login',methods=['POST'])
 def login_info():
+
+    if request.method == "POST":
+        email = request.form.get("uname")
+        psw = request.form.get("psw")
+        
+        user = User.query({'email':email})
+
+        user.__dict__
+
     return render_template('index.html')
 
     
-    
-    
+
 if __name__ == "__main__":
     app.run()
