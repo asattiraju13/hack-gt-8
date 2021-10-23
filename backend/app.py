@@ -121,7 +121,6 @@ def signup_info():
         classes = request.form.get("classes")
 
         # add to database
-    
 
 @app.route('/login',methods=['POST'])
 def login_info(var = None):
@@ -132,11 +131,11 @@ def login_info(var = None):
         user = User.query.get({'email':email})
 
         # fetch classes
-        Class.query.filter(Class.users.any(user_id=user.id)).all()
+        classes = Class.query.filter(Class.users.any(user_id=user.id)).all()
 
         if user.__dict__['password'] == psw:
-            resp = make_response(render_template('dashboard.html'))
-            resp.set_cookie('classes', Class.query.filter(Class.users.any(user_id=user.id)).all())
+            resp = make_response(render_template('dashboard.html'), variable = classes)
+            resp.set_cookie('classes', classes)
             return resp #dashboard
         else:
             var = "error"
@@ -146,7 +145,7 @@ def login_info(var = None):
 def get_classes(user):
     return User.query.get({'classes':user})
 
-@app.route('/dashboard', methods='GET')
+@app.route('/dashboard', methods=['GET'])
 def dashboard():
     classes = request.cookies.get('classes')
     return render_template('dashboard.htmml', variable = classes)
