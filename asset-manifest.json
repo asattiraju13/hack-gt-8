@@ -1,0 +1,35 @@
+{
+  "files": {
+    "static/js/0.335a480c.chunk.js": "/hack-gt-8/static/js/0.335a480c.chunk.js",
+    "static/js/0.335a480c.chunk.js.map": "/hack-gt-8/static/js/0.335a480c.chunk.js.map",
+    "static/js/1.9fda107f.chunk.js": "/hack-gt-8/static/js/1.9fda107f.chunk.js",
+    "static/js/1.9fda107f.chunk.js.map": "/hack-gt-8/static/js/1.9fda107f.chunk.js.map",
+    "main.js": "/hack-gt-8/static/js/main.8e97cb62.chunk.js",
+    "main.js.map": "/hack-gt-8/static/js/main.8e97cb62.chunk.js.map",
+    "runtime-main.js": "/hack-gt-8/static/js/runtime-main.9e1a346b.js",
+    "runtime-main.js.map": "/hack-gt-8/static/js/runtime-main.9e1a346b.js.map",
+    "static/css/4.a95be28f.chunk.css": "/hack-gt-8/static/css/4.a95be28f.chunk.css",
+    "static/js/4.00c57ed1.chunk.js": "/hack-gt-8/static/js/4.00c57ed1.chunk.js",
+    "static/js/4.00c57ed1.chunk.js.map": "/hack-gt-8/static/js/4.00c57ed1.chunk.js.map",
+    "static/js/5.c4fb0ada.chunk.js": "/hack-gt-8/static/js/5.c4fb0ada.chunk.js",
+    "static/js/5.c4fb0ada.chunk.js.map": "/hack-gt-8/static/js/5.c4fb0ada.chunk.js.map",
+    "static/js/6.5e0b5551.chunk.js": "/hack-gt-8/static/js/6.5e0b5551.chunk.js",
+    "static/js/6.5e0b5551.chunk.js.map": "/hack-gt-8/static/js/6.5e0b5551.chunk.js.map",
+    "static/js/7.e31c5af0.chunk.js": "/hack-gt-8/static/js/7.e31c5af0.chunk.js",
+    "static/js/7.e31c5af0.chunk.js.map": "/hack-gt-8/static/js/7.e31c5af0.chunk.js.map",
+    "static/js/8.04721e57.chunk.js": "/hack-gt-8/static/js/8.04721e57.chunk.js",
+    "static/js/8.04721e57.chunk.js.map": "/hack-gt-8/static/js/8.04721e57.chunk.js.map",
+    "static/js/9.fd87e153.chunk.js": "/hack-gt-8/static/js/9.fd87e153.chunk.js",
+    "static/js/9.fd87e153.chunk.js.map": "/hack-gt-8/static/js/9.fd87e153.chunk.js.map",
+    "index.html": "/hack-gt-8/index.html",
+    "static/css/4.a95be28f.chunk.css.map": "/hack-gt-8/static/css/4.a95be28f.chunk.css.map",
+    "static/js/4.00c57ed1.chunk.js.LICENSE.txt": "/hack-gt-8/static/js/4.00c57ed1.chunk.js.LICENSE.txt",
+    "static/js/5.c4fb0ada.chunk.js.LICENSE.txt": "/hack-gt-8/static/js/5.c4fb0ada.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9e1a346b.js",
+    "static/css/4.a95be28f.chunk.css",
+    "static/js/4.00c57ed1.chunk.js",
+    "static/js/main.8e97cb62.chunk.js"
+  ]
+}
