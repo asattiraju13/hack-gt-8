@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, make_response
+from flask import Flask, request, jsonify, render_template, make_response, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask import url_for
@@ -110,9 +110,9 @@ users_schema = UserSchema(many=True)
 
 @app.route('/')
 def hello_world():
-    return "hello world"
+    return redirect(url_for('login_info'))
 
-@app.route('/signup',methods=['POST'])
+@app.route('/signup',methods=['POST','GET'])
 def signup_info():
     if request.method == "POST":
         email = request.form.get("uname")
@@ -122,8 +122,9 @@ def signup_info():
 
         # add to database
 
-@app.route('/login',methods=['POST'])
-def login_info(var = None):
+@app.route('/login',methods=['POST', 'GET'])
+def login_info():
+    render_template('login.html')
     if request.method == "POST":
         email = request.form.get("uname")
         psw = request.form.get("psw")
@@ -138,8 +139,9 @@ def login_info(var = None):
             resp.set_cookie('classes', classes)
             return resp #dashboard
         else:
-            var = "error"
-            return url_for('login_info', variable = var)
+            return redirect(url_for('hello_world'))
+    
+    return redirect(url_for('dashboard'))
 
 @app.route('/get_user/<user>', methods=['GET'])
 def get_classes(user):
@@ -148,7 +150,7 @@ def get_classes(user):
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
     classes = request.cookies.get('classes')
-    return render_template('dashboard.htmml', variable = classes)
+    return render_template('dashboard.html', variable = classes)
         
 if __name__ == "__main__":
     app.run(debug=True)
