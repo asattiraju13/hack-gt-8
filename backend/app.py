@@ -109,7 +109,7 @@ user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 @app.route('/')
-def hello_world():
+def login():
     return redirect(url_for('login_info'))
 
 @app.route('/signup',methods=['POST','GET'])
@@ -124,8 +124,7 @@ def signup_info():
 
 @app.route('/login',methods=['POST', 'GET'])
 def login_info():
-    render_template('login.html')
-    if request.method == "POST":
+    if request.method == 'POST':
         email = request.form.get("uname")
         psw = request.form.get("psw")
         psw = hashlib.sha256(psw.encode())
@@ -141,7 +140,7 @@ def login_info():
         else:
             return redirect(url_for('hello_world'))
     
-    return redirect(url_for('dashboard'))
+    return render_template('login.html')
 
 @app.route('/get_user/<user>', methods=['GET'])
 def get_classes(user):
