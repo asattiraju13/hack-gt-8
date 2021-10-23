@@ -117,11 +117,11 @@ def login_info():
         
         user = User.query({'email':email})
 
-        user.__dict__
+        user.__dict__['password']
 
     return render_template('index.html')
 
     
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
