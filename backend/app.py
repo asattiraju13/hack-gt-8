@@ -22,6 +22,21 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
+
+class Class(db.Model):
+    class_id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String, unique = True)
+    addresses = db.relationship('Note', backref='class', lazy=True, uselist=False)
+
+class Note(db.Model):
+    note_id = db.Column(db.Integer, primary_key = True)
+    class_name = db.Column(db.String, db.ForeignKey('class.name'))
+    lecture = db.Column(db.Integer, primary_key = True)
+    text = db.Column(db.String)
+    imgs = db.Column(db.BLOB)
+
+
+
 @app.route('/')
 def hello_world():
     return "hello world"
