@@ -28,6 +28,7 @@ class Class(db.Model):
     name = db.Column(db.String, unique = True)
     notes = db.relationship('Note', backref='class', lazy=True, uselist=False)
     posts = db.relationship('Post', backref='class', lazy=True, uselist=False)
+    user = db.relationship('User', backref='class', lazy=True)
 
     def __init__(self, name, notes, posts):
         self.name = name
@@ -49,12 +50,19 @@ class Note(db.Model):
 
 class Post(db.Model):
     post_id = db.Column(db.Integer, primary_key = True)
+    class_name = db.Column(db.String, db.ForeignKey('class.name'))
     title = db.Column(db.String)
-    text = db.Column(db.String, db.ForeignKey('class.name'))
+    text = db.Column(db.String)
 
     def __init__(self, title, text):
         self.title = title
         self.text = text
+        self.class_name = class_name
+
+class User(db.Model):
+    user_id = db.Column(db.Integer, primary_key = True)
+    email = db.Column(db.String)
+    classes = db.Column(db)
 
 class ClassSchema(ma.Schema):
     class Meta:
@@ -76,7 +84,6 @@ notes_schema = NoteSchema(many=True)
 
 post_schema = PostSchema()
 posts_schema = PostSchema(many=True)
-
 
 
 @app.route('/')
