@@ -11,6 +11,7 @@ import {
   HeadingContent,
   MinTitle,
   MinPara,
+  MemberName
 } from "./styles";
 
 const LeftContentBlock = ({
@@ -30,7 +31,26 @@ const LeftContentBlock = ({
               <SvgIcon src={vector} width="45px" height="700px" />
           </Col>
           <Col lg={11} md={11} sm={12} xs={24}>
-            <SvgIcon src={icon} width="100%" height="100%" />
+            <Row justify="space-around">
+              <Col justify-content="center">
+                <img src="https://flatlogic.com/assets/categories_bg/react-0ebd1f088f8006a5c9888dcf0bb3ea3bab75f063c815a9fd8205694a555f74b4.svg" alt="lol" width="200px" />
+                <MemberName>Ojasw U.</MemberName>
+              </Col>
+              <Col justify-content="center">
+                <img src="https://flatlogic.com/assets/categories_bg/react-0ebd1f088f8006a5c9888dcf0bb3ea3bab75f063c815a9fd8205694a555f74b4.svg" alt="lol" width="200px" />
+                <MemberName>Abhinav S.</MemberName>
+              </Col>
+            </Row>
+            <Row justify="space-around">
+              <Col justify-content="center">
+                <img src="https://flatlogic.com/assets/categories_bg/react-0ebd1f088f8006a5c9888dcf0bb3ea3bab75f063c815a9fd8205694a555f74b4.svg" alt="lol" width="200px" />
+                <MemberName>Yatharth B.</MemberName>
+              </Col>
+              <Col justify-content="center">
+                <img src="https://flatlogic.com/assets/categories_bg/react-0ebd1f088f8006a5c9888dcf0bb3ea3bab75f063c815a9fd8205694a555f74b4.svg" alt="lol" width="200px" />
+                <MemberName>Darshan K.</MemberName>
+              </Col>
+            </Row>
           </Col>
           <Col lg={11} md={11} sm={11} xs={24}>
             <ContentWrapper>

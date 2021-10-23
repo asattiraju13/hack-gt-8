@@ -109,6 +109,7 @@ user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 @app.route('/')
+
 def login():
     return redirect(url_for('login_info'))
 

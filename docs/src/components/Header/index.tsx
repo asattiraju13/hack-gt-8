@@ -49,7 +49,7 @@ const Header = ({ t }: any) => {
         >
           <Span>
             <Button
-              onClick={() =>  window.location.href='/login'}
+              onClick={() =>  window.location.href='http://127.0.0.1:5500/'}
             >{t("Login")}</Button>
           </Span>
         </CustomNavLinkSmall>
