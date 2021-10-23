@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const MemberName = styled("h6")`
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  justify-content: center;
+`;
+
 export const LeftContentSection = styled("section")`
   position: relative;
   padding: 0px 30px 30px 60px;
