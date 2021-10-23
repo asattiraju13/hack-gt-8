@@ -2,7 +2,6 @@
   "name": "tren",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://asattiraju13.github.io/hack-gt-8",
   "dependencies": {
     "@types/node": "^15.6.0",
     "@types/react": "^17.0.6",
