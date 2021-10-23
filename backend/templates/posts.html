@@ -1,0 +1,285 @@
+<html>
+  <head>
+	<title>Yatharth</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        
+		body {
+			margin: 0;
+			overflow-x: hidden;
+			scrollbar-width: thin;
+		}
+
+		html {
+			--scrollbarBG: #b7ff00;
+			--thumbBG: rgb(16, 18, 19);
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+		}
+		body::-webkit-scrollbar {
+		width: 11px;
+		}
+		body {
+		scrollbar-width: thin;
+		scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+		}
+		body::-webkit-scrollbar-track {
+		background: var(--scrollbarBG);
+		}
+		body::-webkit-scrollbar-thumb {
+		background-color: var(--thumbBG) ;
+		border-radius: 6px;
+		border: 3px solid var(--scrollbarBG);
+		}
+
+        @font-face {
+        font-family: heading-font;
+        src: url(TestTiemposHeadline-Regular.otf);
+        }
+
+        @font-face {
+        font-family: body-font;
+        src: url(Inconsolata-Regular.ttf);
+        }
+
+      .home {
+		  background-color: #F8F0E3;
+	  }
+
+      .back-button {
+        position: absolute;
+        left: 2.29%;
+        right: 90.05%;
+        top: 5.37%;
+        bottom: 89.54%;
+        background: #373737;
+        border-radius: 13px;
+        padding: 0;
+        border: none;
+
+      }
+
+      h1 {
+          font-size: 70px;
+          text-align: left;
+          font-family: heading-font;
+          padding-left: 5%;
+
+          color: #474747;
+      }
+      .card {
+        display: flex;
+        height: 200px;
+        width: 200px;
+        background-color: #F8F0E3;
+        border-radius: 10px;
+        box-shadow: -1rem 0 3rem #000;
+        /*   margin-left: -50px; */
+        transition: 0.4s ease-out;
+        position: relative;
+        left: 0px;
+        }
+
+        .card:not(:first-child) {
+            margin-left: -50px;
+        }
+
+        .card:hover {
+        transform: translateY(-20px);
+        transition: 0.4s ease-out;
+        box-shadow: -1rem 0 3rem orange;
+        }
+
+        .card:hover ~ .card {
+        position: relative;
+        left: 50px;
+        transition: 0.4s ease-out;
+        }
+
+        .title {
+        color: #373737;
+        font-weight: 300;
+        position: absolute;
+        left: 20px;
+        top: 15px;
+        font-family: body-font;
+        }
+
+        .cards {
+            display: flex;
+            align-items: center;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1%;
+        }
+
+        .post-button {
+            padding-left: 3%;
+            padding-right: 3%;
+            background: #373737;
+            border: 4px solid #373737;
+            box-sizing: border-box;
+            border-radius: 13px;
+            color: #F8F0E3;
+            font-family: body-font;
+        }
+
+        .notes-button {
+            margin-left: 3%;
+            padding-left: 3%;
+            padding-right: 3%;
+            border: 3px solid #373737;
+            box-sizing: border-box;
+            border-radius: 13px;
+            color: #373737;
+            font-family: body-font;
+        }
+
+        .plus-svg {
+            display: block;
+            margin: auto;
+            margin-bottom: 2%;
+            background: #373737;
+            padding-top: 1.5%;
+            padding-bottom: 1.5%;
+            padding-left: 1.5%;
+            padding-right: 1.5%;
+            opacity: 40%;
+        }
+
+        .posts {
+            color: #F8F0E3;
+            display: flex;
+            flex-direction: column;
+            margin-left: 38%;
+            padding-top: 3%;
+            overflow: auto;
+            height: 50vh;
+            display: grid;
+
+
+        }
+
+        .post {
+            background: #373737;
+            border-radius: 40px;
+            width: 40%;
+            margin-bottom: 4%;
+            display: inline-grid;
+            grid-template-columns: [texts] 80% [arrows] 20%;
+            grid-template-rows: [row1] 33% [row2] 33% [row3] 33%;
+        }
+
+        .post-title {
+            color: #F8F0E3;
+            font-family: heading-font;
+            font-size: 40px;
+            grid-column-start: 1;
+            grid-column-end: span 1;
+            grid-row-start: 1;
+            grid-row-end: span 1;
+            padding-bottom: 20%;
+        }
+
+        .post-body {
+            font-family: body-font;
+            padding-left: 4%;
+            grid-column-start: 1;
+            grid-column-end: span 1;
+            grid-row-start: 2;
+            grid-row-start: span 2;
+            overflow-wrap: break-word;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;    
+            
+        }
+
+        .uparrow {
+            grid-column-start: 2;
+            grid-column-end: span 1;
+            grid-row-start: 1;
+            grid-row-end: span 1;
+            padding-top: 50%;
+        }
+
+        .upvote {
+            grid-column-start: 2;
+            grid-column-end: span 1;
+            grid-row-start: 2;
+            grid-row-end: span 1;
+        }
+
+        .downarrow {
+            grid-column-start: 2;
+            grid-column-end: span 1;
+            grid-column-start: 3;
+            grid-column-end: span 1;
+            margin-top: -20%;
+        }
+
+        .upvote {
+            font-family: body-font;
+            padding-left: 20%;
+        }
+	</style>
+	
+  </head>
+  <body>
+	<div class="home">
+        <h1>ENGL 1101</h1>
+        <div class ="header">
+            <div class ="tabs">
+                <button class="post-button">
+                    Posts
+                </button>
+                <button class="notes-button">
+                    Notes
+                </button>
+            </div>
+            <div class="upload-button">
+                <svg class="plus-svg" width="67" height="66" viewBox="0 0 67 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28.0305 5.38776C28.0305 2.41218 30.4792 0 33.4999 0C36.5205 0 38.9693 2.41218 38.9693 5.38775V60.6122C38.9693 63.5878 36.5205 66 33.4999 66C30.4792 66 28.0305 63.5878 28.0305 60.6122V5.38776Z" fill="#F8F0E3"/>
+                    <path d="M5.47889 37.7622C2.45823 37.7673 0.00525006 35.3593 8.41394e-06 32.3838C-0.00523324 29.4082 2.43925 26.9918 5.4599 26.9867L61.5211 26.8908C64.5418 26.8857 66.9948 29.2937 67 32.2692C67.0052 35.2448 64.5608 37.6612 61.5401 37.6663L5.47889 37.7622Z" fill="#F8F0E3"/>
+                </svg>
+            </div>
+            </div>
+            <div class="posts">
+                <div class = "post">
+                    <h1 class="post-title">Ronnie was so good today!</h1>
+                    <p class="post-body">The part with the proof that shows your mom...so good kfasdhf asduhf aoisdhfa idshfiasdifajsdifjadisfjasisdjfaisdjfiasjdfiajsdifjadsijfaisdjfiajdsfiajdsifjasdifjasidjfaidjfasdfi</p>
+                
+                    <svg class = "uparrow" width="56" height="57" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.0654 33.1227L17.3025 36.3187L27.7066 25.8039L38.2441 36.1852L41.4401 32.9481L27.6654 19.3481L14.0654 33.1227Z" fill="#F8F0E3"/>
+                    </svg>
+
+                    <h3 class="upvote">34</h3>
+
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M41.2234 22.9462L37.9973 19.7391L27.5573 30.2183L17.0554 19.8012L13.8483 23.0273L27.5764 36.6743L41.2234 22.9462Z" fill="#F8F0E3"/>
+                    </svg>
+                        
+                        
+                </div>
+
+                <div class = "post">
+                    <h1 class="post-title">Ronnie was so good today!</h1>
+                    <p class="post-body">The part with the proof that shows your mom...so good kfasdhf asduhf aoisdhfa idshfiasdifajsdifjadisfjasisdjfaisdjfiasjdfiajsdifjadsijfaisdjfiajdsfiajdsifjasdifjasidjfaidjfasdfi</p>
+                    
+                </div>
+
+            </div>        
+	</div>
+	
+  </body>
+</html>
