@@ -1,4 +1,4 @@
-import { validateProps } from "../types";
+import { validateProps } from "../../common/types";
 
 export default function validate(values: validateProps) {
   let errors = {} as validateProps;
