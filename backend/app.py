@@ -1,10 +1,9 @@
-#Flask App
-
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask import url_for
 import sqlalchemy.dialects.sqlite
+import hashlib
 
 from flask_sqlalchemy.model import Model
 
@@ -45,8 +44,10 @@ class Class(db.Model):
     class_id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, unique = True)
     #notes = db.relationship('Note', backref='class', lazy=True, uselist=False)
+
+    users = db.relationship('User',secondary=user_to_classes, backref=db.backref('user_to_classes_backref', lazy='dynamic'))
     
-    def __init__(self, name, notes, posts):
+    def __init__(self, name, notes, users, posts):
         self.name = name
         self.notes = notes
         self.users = users
@@ -56,12 +57,14 @@ class Post(db.Model):
     post_id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String)
     text = db.Column(db.String)
+    vote_count = db.Column(db.Integer)
+
     classes = db.relationship('Class',secondary=class_to_posts, backref=db.backref('class_to_posts_backref', lazy='dynamic'))
 
-    def __init__(self, title, text):
+    def __init__(self, title, text, vote_count):
         self.title = title
         self.text = text
-        self.classes = classes
+        self.vote_count = vote_count
 
 class Note(db.Model):
     note_id = db.Column(db.Integer, primary_key = True)
@@ -75,6 +78,7 @@ class Note(db.Model):
         self.lecture = lecture
         self.text = text
         self.imgs = imgs
+        
 
 class UserSchema(ma.Schema):
     class Meta:
@@ -90,7 +94,7 @@ class NoteSchema(ma.Schema):
 
 class PostSchema(ma.Schema):
     class Meta:
-        fields = ('title','text')
+        fields = ('title','text','vote_count')
 
 class_schema = ClassSchema()
 classes_schema = ClassSchema(many=True)
@@ -108,19 +112,44 @@ users_schema = UserSchema(many=True)
 def hello_world():
     return "hello world"
 
-@app.route('/login',methods=['POST'])
-def login_info():
-
+@app.route('/signup',methods=['POST'])
+def signup_info():
     if request.method == "POST":
         email = request.form.get("uname")
         psw = request.form.get("psw")
+        psw = hashlib.sha256(psw.encode())
+        classes = request.form.get("classes")
+
+        # add to database
+    
+
+@app.route('/login',methods=['POST'])
+def login_info(var = None):
+    if request.method == "POST":
+        email = request.form.get("uname")
+        psw = request.form.get("psw")
+        psw = hashlib.sha256(psw.encode())
+        user = User.query.get({'email':email})
+
+        # fetch classes
+        Class.query.filter(Class.users.any(user_id=user.id)).all()
+
+        if user.__dict__['password'] == psw:
+            resp = make_response(render_template('dashboard.html'))
+            resp.set_cookie('classes', Class.query.filter(Class.users.any(user_id=user.id)).all())
+            return resp #dashboard
+        else:
+            var = "error"
+            return url_for('login_info', variable = var)
+
+@app.route('/get_user/<user>', methods=['GET'])
+def get_classes(user):
+    return User.query.get({'classes':user})
+
+@app.route('/dashboard', methods='GET')
+def dashboard():
+    classes = request.cookies.get('classes')
+    return render_template('dashboard.htmml', variable = classes)
         
-        user = User.query({'email':email})
-
-        user.__dict__
-
-    return render_template('index.html')
-
-
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
