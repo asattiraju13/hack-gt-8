@@ -11,6 +11,7 @@ import os
 from markupsafe import escape
 
 #Init app
+# Share ports
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -129,17 +130,18 @@ def login_info():
         email = request.form.get("uname")
         psw = request.form.get("psw")
         psw = hashlib.sha256(psw.encode())
-        user = User.query.get({'email':email})
-
+        print(email)
+        user = User.query.filter_by(email=email).first()
+        if user is not None:
         # fetch classes
-        classes = Class.query.filter(Class.users.any(user_id=user.id)).all()
+            classes = Class.query.filter(Class.users.any(user_id=user.id)).all()
 
-        if user.__dict__['password'] == psw:
-            resp = make_response(render_template('dashboard.html'), variable = classes)
-            resp.set_cookie('classes', classes)
-            return resp #dashboard
-        else:
-            return redirect(url_for('hello_world'))
+            if user.password == psw:
+                resp = make_response(render_template('dashboard.html'), variable = classes)
+                resp.set_cookie('classes', classes)
+                return resp #dashboard
+            else:
+                return redirect(url_for('hello_world'))
     
     return render_template('login.html')
 
