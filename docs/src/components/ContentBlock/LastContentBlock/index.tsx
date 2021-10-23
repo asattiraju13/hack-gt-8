@@ -16,8 +16,8 @@ import {
 const LeftContentBlock = ({
   icon,
   title,
-  content,
   vector,
+  content,
   section,
   t,
   id,

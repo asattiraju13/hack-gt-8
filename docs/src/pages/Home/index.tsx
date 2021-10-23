@@ -17,20 +17,23 @@ const Home = () => {
         content={IntroContent.text}
         button={IntroContent.button}
         icon="mascot.png"
+        vector="vector01.svg"
         id="intro"
       />
       <ContentBlock
         type="right"
         title={MissionContent.title}
         content={MissionContent.text}
-        icon="Howitani-1.m4v"
+        icon="Howitani-1.gif"
+        vector="vector02.svg"
         id="mission"
       />
       <ContentBlock
-        type="left"
+        type="last"
         title={AboutContent.title}
         content={AboutContent.text}
         icon="graphs.svg"
+        vector="vector03.svg"
         id="about"
       />
       {/* <ContentBlock

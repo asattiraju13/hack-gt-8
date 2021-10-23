@@ -9,6 +9,7 @@ import {
   Content,
   ContentWrapper,
   ButtonWrapper,
+  HeadingContent,
   WindowContainer
 } from "./styles";
 
@@ -17,6 +18,7 @@ const RightBlock = ({
   content,
   button,
   icon,
+  vector,
   t,
   id,
 }: ContentBlockProps) => {
@@ -30,10 +32,10 @@ const RightBlock = ({
     <WindowContainer>
       <RightBlockContainer>
         <Fade direction="right">
-          <Row justify="space-between" align="middle" id={id}>
-            <Col lg={11} md={11} sm={11} xs={24}>
+          <Row justify="end" align="middle" id={id}>
+            <Col lg={12} md={12} sm={12} xs={20}>
               <ContentWrapper>
-                <h6>{t(title)}</h6>
+                <HeadingContent>{t(title)}</HeadingContent>
                 <Content>{t(content)}</Content>
                 <ButtonWrapper>
                   {typeof button === "object" &&
@@ -52,8 +54,11 @@ const RightBlock = ({
                 </ButtonWrapper>
               </ContentWrapper>
             </Col>
-            <Col lg={11} md={11} sm={12} xs={24}>
-              <SvgIcon src={icon} width="100%" height="100%" />
+            <Col lg={10} md={10} sm={11} xs={23}>
+              <SvgIcon src={icon} width="500px" height="500px" />
+            </Col>
+            <Col lg={1}>
+              <SvgIcon src={vector} width="37px" height="570px" />
             </Col>
           </Row>
         </Fade>
