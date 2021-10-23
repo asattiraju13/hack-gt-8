@@ -23,7 +23,7 @@ const Home = () => {
         type="right"
         title={MissionContent.title}
         content={MissionContent.text}
-        icon="Howitani-1.m4v"
+        icon="Howitani-1.gif"
         id="mission"
       />
       <ContentBlock

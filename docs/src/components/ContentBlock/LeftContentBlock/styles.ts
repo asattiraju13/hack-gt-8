@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const LeftContentSection = styled("section")`
   position: relative;
-  padding: 0rem 0 8rem;
+  padding: 0px 30px 30px 60px;
   height: 100vh;
-  width; 100vw;
+  width: 100vw;
   padding-top: 10%;
   @media only screen and (max-width: 1024px) {
-    padding: 4rem 0 4rem;
+    padding: 20rem 0;
   }
 `;
 
@@ -28,6 +28,10 @@ export const ServiceWrapper = styled("div")`
   display: flex;
   justify-content: space-between;
   max-width: 100%;
+`;
+
+export const HeadingContent = styled("h6")`
+  color: #373737;
 `;
 
 export const MinTitle = styled("h4")`

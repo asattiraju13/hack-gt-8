@@ -8,6 +8,7 @@ import {
   Content,
   ContentWrapper,
   ServiceWrapper,
+  HeadingContent,
   MinTitle,
   MinPara,
 } from "./styles";
@@ -29,7 +30,7 @@ const LeftContentBlock = ({
           </Col>
           <Col lg={11} md={11} sm={11} xs={24}>
             <ContentWrapper>
-              <h6>{t(title)}</h6>
+              <HeadingContent>{t(title)}</HeadingContent>
               <Content>{t(content)}</Content>
               <ServiceWrapper>
                 <Row justify="space-between">

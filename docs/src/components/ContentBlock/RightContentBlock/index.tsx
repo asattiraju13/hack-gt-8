@@ -9,6 +9,7 @@ import {
   Content,
   ContentWrapper,
   ButtonWrapper,
+  HeadingContent,
   WindowContainer
 } from "./styles";
 
@@ -33,7 +34,7 @@ const RightBlock = ({
           <Row justify="space-between" align="middle" id={id}>
             <Col lg={11} md={11} sm={11} xs={24}>
               <ContentWrapper>
-                <h6>{t(title)}</h6>
+                <HeadingContent>{t(title)}</HeadingContent>
                 <Content>{t(content)}</Content>
                 <ButtonWrapper>
                   {typeof button === "object" &&
