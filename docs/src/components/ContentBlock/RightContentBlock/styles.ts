@@ -1,9 +1,17 @@
 import styled from "styled-components";
 
-export const RightBlockContainer = styled("section")`
-  position: relative;
-  padding: 10rem 0 8rem;
+export const WindowContainer = styled("div")`
+  width: 100vw;
+  height: 100vh;
+  color: #373737;
+`;
 
+export const RightBlockContainer = styled("section")`
+
+  background: #373737;
+  width: 100vw;
+  height: 100vh;
+  margin-left: 0;
   @media only screen and (max-width: 1024px) {
     padding: 8rem 0 6rem;
   }

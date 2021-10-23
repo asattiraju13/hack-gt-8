@@ -23,14 +23,13 @@ const Home = () => {
         type="right"
         title={MissionContent.title}
         content={MissionContent.text}
-        icon="product-launch.svg"
+        icon="Howitani-1.m4v"
         id="mission"
       />
       <ContentBlock
         type="left"
         title={AboutContent.title}
         content={AboutContent.text}
-        section={AboutContent.section}
         icon="graphs.svg"
         id="about"
       />
