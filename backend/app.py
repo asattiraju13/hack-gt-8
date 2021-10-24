@@ -151,6 +151,12 @@ def get_classes(user):
 def dashboard():
     classes = request.cookies.get('classes')
     return render_template('dashboard.html', variable = classes)
+
+@app.route('/<classname>/posts', methods=['GET'])
+def posts(classname):
+    posts = Post.query.filter_by(class_name = classname).all()
+    return render_template('posts.html', variable = posts)
+
         
 if __name__ == "__main__":
     app.run(debug=True)
