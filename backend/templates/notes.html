@@ -21,7 +21,7 @@
         }
 
         .container {
-            width: 90%px;
+            width: 80%px;
             height: 300px;
             display: flex;
             flex-wrap: wrap;
@@ -70,8 +70,8 @@
         font-family: sans-serif;
         border-radius: 0.3rem;
         cursor: pointer;
-        height: 52px;
-        font-size: 40px;
+        height: 54px;
+        font-size: 42px;
         display: inline-block;
         /* margin-top: 1rem; */
         }
@@ -96,7 +96,7 @@
         }
 
         .container {
-        width: 95%;
+        width: 900px;
         height: 300px;
         display: flex;
         flex-wrap: wrap;
@@ -274,7 +274,7 @@
             var slides = classes.split(', ');
 
             slides.forEach(function (course) {
-                var str = '<a class="card1" href="/' + course + '/posts"><p>';
+                var str = '<a class="card1" href="/' + course + '/notes"><p>';
                 str += course;
                 str += '</p><div class="go-corner" href="#"><div class="go-arrow">→</div></div></a>';
                 document.getElementById("container").innerHTML += str;
@@ -287,16 +287,16 @@
     <div class="home">
         <h1>Unified Notes.</h1>
         <div class ="tabs">
-            <a class="post-button" href="http://127.0.0.1:5500/backend/templates/posts.html">
+            <a class="post-button" href="posts">
                 Posts
             </a>
-            <a class="notes-button" href="http://127.0.0.1:5500/backend/templates/notes.html">
+            <a class="notes-button" href="notes">
                 Notes
             </a>
         </div>
             <div class="upload-button">
                 <div class="leftcenter">
-                    <form action="{{url_for('notess'), classname = classname}}" method="post">
+                    <form action="{{url_for('notess', classname=classname)}}" method="post" enctype=multipart/form-data>
                         <!-- actual upload which is hidden -->
                         <input type="file" id="actual-btn" name="file" hidden />
                         <input type="text" id="lecture-number" placeholder="Lecture #" size="8" height=30>

@@ -200,7 +200,7 @@ def notess(classname):
             return redirect(url_for('dashboard', name=filename))
 
     notes = Note.query.filter_by(class_name = classname).all()
-    return render_template('notes.html', classname=classname, notes = notes)
+    return render_template('notes.html', classname=classname, notes=notes)
 
     #     # FIND THE PD
 
