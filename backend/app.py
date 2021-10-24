@@ -62,13 +62,11 @@ class Note(db.Model):
     class_name = db.Column(db.String)
     lecture = db.Column(db.Integer, primary_key = True)
     text = db.Column(db.String)
-    imgs = db.Column(db.PickleType)
 
-    def __init__(self, class_name, lecture, text, imgs):
+    def __init__(self, class_name, lecture, text):
         self.class_name = class_name
         self.lecture = lecture
         self.text = text
-        self.imgs = imgs
 
 class UserSchema(ma.Schema):
     class Meta:
@@ -155,17 +153,33 @@ def dashboard():
 def get_classes(user):
     return User.query.get({'classes':user})
 
-@app.route('/<classname>/notes',methods=['GET'])
+
+@app.route('/<classname>/notes',methods=['GET','POST'])
 def notes(classname):
+    if request.method == 'POST':
+        # # lecture, text, add to db
+        lecture = request.form.get("lecture")
+
     notes = Note.query.filter_by(class_name = classname).all()
+    return
 
-@app.route('/<classname>/posts', methods=['GET'])
+
+@app.route('/<classname>/posts', methods=['GET','POST'])
 def posts(classname):
-    posts = Post.query.filter_by(class_name = classname).all()
+    if request.method == 'POST':
+        title = request.form.get("title")
+        text = request.form.get("text")
 
-    posts = sorted(posts, key = lambda x: x.vote_count, reverse=True)
+        new_post = Post(title, text, 0, classname)
 
-    return render_template('Posts.html', variable = posts)
+        db.session.add(new_post)
+        db.session.commit()
+
+        posts = Post.query.filter_by(class_name = classname).all()
+        posts = sorted(posts, key = lambda x: x.vote_count, reverse=True)
+        return render_template('Posts.html', variable = posts, name = classname)
+    
+    return render_template('Posts.html')
         
 if __name__ == "__main__":
     app.run(debug=True)

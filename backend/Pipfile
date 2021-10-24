@@ -11,6 +11,10 @@ marshmallow-sqlalchemy = "*"
 flask-migrate = "*"
 flask-wtf = "*"
 marshmallow = "*"
+spacy = "*"
+nltk = "*"
+sklearn = "*"
+corpus = "*"
 
 [dev-packages]
 
