@@ -104,8 +104,9 @@
         color: #373737;
         font-weight: 300;
         position: absolute;
-        left: 20px;
-        top: 15px;
+        align-items: center;
+        justify-content: center;
+        top: 5px;
         font-family: body-font;
         }
 
@@ -163,13 +164,19 @@
             overflow: auto;
             height: 50vh;
             padding-bottom: 20%;
+        }
 
+        .newpost {
+        background: #373737;
+        border-radius: 40px;
+        width: 70%;
+        margin-bottom: 4%;
         }
 
         .post {
             background: #373737;
             border-radius: 40px;
-            width: 90%;
+            width: 70%;
             margin-bottom: 4%;
             display: grid;
             grid-template-columns: [one] 80% [two] 20%;
@@ -182,12 +189,13 @@
             font-size: 40px;
             grid-column-start: 1;
             grid-column-end: span 1;
-            padding-bottom: 20%;
+            /* padding-bottom: 20%; */
         }
 
         .post-body {
             font-family: body-font;
-            padding-left: 4%;
+            padding-left: 5%;
+            padding-top: 10px;
             grid-column-start: 1;
             grid-column-end: 2;
             overflow-wrap: break-word;
@@ -214,10 +222,10 @@
         }
 
         label {
-            background-color: rgba(55, 55, 55, 0.7);
+            /* background-color: rgba(55, 55, 55, 1); */
             color: white;
             font-size: 45px;
-            padding: 50px 63px 51px 63px;
+            padding: 20px 40px 0px;
             width: 150px;
             height: 150px;
             font-family: sans-serif;
@@ -238,10 +246,25 @@
 
         .leftcenter{
             padding-left: calc(50% - 77px);
-            padding-top: 5%;
-            padding-bottom: 5%;
+            /* padding-top: 5%;
+            padding-bottom: 5%; */
             align-items: center;
             justify-content: center;
+        }
+        .submit-box {
+        background-color: #373737;
+        border: none;
+        border-radius: 6px;
+        width: 20%;
+        margin-left: 45%;
+        }
+
+        .input {
+        margin-left: 5%;
+        }
+
+        .label {
+        font-size: 20px;
         }
 	</style>
   </head>
@@ -257,43 +280,50 @@
                     Notes
                 </button>
             </div>
-            <div class="upload-button">
-                <div class="leftcenter">
-                    <!-- actual upload which is hidden -->
-                    <input type="file" id="actual-btn" hidden />
-        
-                    <!-- our custom upload button -->
-                    <label for="actual-btn">+</label>
-                </div>
-                <!-- <svg class="plus-svg" width="67" height="66" viewBox="0 0 67 66" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M28.0305 5.38776C28.0305 2.41218 30.4792 0 33.4999 0C36.5205 0 38.9693 2.41218 38.9693 5.38775V60.6122C38.9693 63.5878 36.5205 66 33.4999 66C30.4792 66 28.0305 63.5878 28.0305 60.6122V5.38776Z" fill="#F8F0E3"/>
-                    <path d="M5.47889 37.7622C2.45823 37.7673 0.00525006 35.3593 8.41394e-06 32.3838C-0.00523324 29.4082 2.43925 26.9918 5.4599 26.9867L61.5211 26.8908C64.5418 26.8857 66.9948 29.2937 67 32.2692C67.0052 35.2448 64.5608 37.6612 61.5401 37.6663L5.47889 37.7622Z" fill="#F8F0E3"/>
-                </svg> -->
-            </div>
             </div>
             <div class="posts">
-                <div class = "post">
-                    <h1 class="post-title">Ronnie was so good today!</h1>
-                    <p class="post-body">The part with the proof that shows your mom...so
-                        goofjasisdjfaisdjfiasjdfiajsdifjadsijfaisdjfiajdsfiajdsifjasdifjasidjfaidjfasdfi</p>
-                
-                    <svg class = "up-arrow" width="56" height="57" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.0654 33.1227L17.3025 36.3187L27.7066 25.8039L38.2441 36.1852L41.4401 32.9481L27.6654 19.3481L14.0654 33.1227Z" fill="#F8F0E3"/>
-                    </svg>
-                    <h3 class="upvote-count">64</h3>
-
-
-                        
+            <form action="{{url_for('posts')}}" method="post">
+                <div class="newpost"><br>
+                    <label class="label" for="title">Title: </label><br />
+                    <input class="input" type="text" id="title" name="title"><br>
+                    <label class="label" for="para">Content: </label><br>
+                    <input class="input" type="text" id="para" name="text">
+                    <button class="submit-box" type="submit">
+                        <svg class="arrow-svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
+                            width="24px" fill="#F8F0E3">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" /></svg>
+                    </button>
+                    <br><br><br>
                 </div>
+            </form>
+            <div class="post">
+                <h1 class="post-title">Ronnie was so good today!</h1>
+                <p class="post-body">The part with the proof that shows your mom...so
+                    goofjasisdjfaisdjfiasjdfiajsdifjadsijfaisdjfiajdsfiajdsifjasdifjasidjfaidjfasdfi</p>
 
-                <div class = "post">
-                    <h1 class="post-title">Ronnie was so good today!</h1>
-                    <p class="post-body">The part with the proof that shows your mom...so good kfasdhf asduhf aoisdhfa
-                        idshfiasdifajsdifjadisfjasisdjfaisdjfdjfaidjfasdfi</p>
-                    
-                </div>
+                <svg class="up-arrow" width="56" height="57" viewBox="0 0 56 57" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14.0654 33.1227L17.3025 36.3187L27.7066 25.8039L38.2441 36.1852L41.4401 32.9481L27.6654 19.3481L14.0654 33.1227Z"
+                        fill="#F8F0E3" />
+                </svg>
+                <h3 class="upvote-count">64</h3>
+            </div>
+            <div class="post">
+                <h1 class="post-title">Ronnie was so good today!</h1>
+                <p class="post-body">The part with the proof that shows your mom...so good kfasdhf asduhf aoisdhfa
+                    idshfiasdifajsdifjadisfjasisdjfaisdjfdjfaidjfasdfi</p>
 
-            </div>        
+                <svg class="up-arrow" width="56" height="57" viewBox="0 0 56 57" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14.0654 33.1227L17.3025 36.3187L27.7066 25.8039L38.2441 36.1852L41.4401 32.9481L27.6654 19.3481L14.0654 33.1227Z"
+                        fill="#F8F0E3" />
+                </svg>
+                <h3 class="upvote-count">64</h3>
+            </div>
+        </div>
 	</div>
 	
   </body>
