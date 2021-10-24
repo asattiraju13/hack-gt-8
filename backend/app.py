@@ -20,6 +20,8 @@ import numpy as np
 import nltk
 from stop_words import get_stop_words
 
+from tika import parser
+
 # from nltk.corpus import stopwords
 # stopwords.words('english')
 
@@ -96,7 +98,7 @@ class UserSchema(ma.Schema):
 
 class NoteSchema(ma.Schema):
     class Meta:
-        fields = ('class_name','lecture','text','img')
+        fields = ('class_name','lecture','text')
 
 class PostSchema(ma.Schema):
     class Meta:
@@ -177,6 +179,7 @@ def allowed_file(filename):
 
 @app.route('/<classname>/notes',methods=['GET','POST'])
 def notess(classname):
+    notes = Note.query.filter_by(class_name = classname).all()
     if request.method == 'POST':
         lecture = request.form.get("lecture")
         files = request.files["file"]
@@ -189,6 +192,7 @@ def notess(classname):
             return redirect(request.url)
         file = request.files['file']
 
+
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
         if file.filename == '':
@@ -197,42 +201,24 @@ def notess(classname):
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join("pdf", file.filename))
-            return redirect(url_for('dashboard', name=filename))
+
+            text = parser.from_file(os.path.join("pdf", file.filename))
+
+            for note in notes:
+                if lecture == note.lecture:
+                    a = NotesDoc(note.text)
+                    a.update(text['content'])
+                    new_text = ". ".join(a.raw_sentences)
+                    note.text = new_text
+                    return render_template('notes.html', classname=classname, notes=notes)
+
+            note = Note(classname,lecture,text['content'])
+
+            db.session.add(note)
+            db.session.commit()       
 
     notes = Note.query.filter_by(class_name = classname).all()
     return render_template('notes.html', classname=classname, notes=notes)
-
-    #     # FIND THE PD
-
-
-
-    #     pdffileobj=open('1.pdf','rb')
-
-    #     pdfreader=PyPDF2.PdfFileReader(pdffileobj)
-    #     x=pdfreader.numPages
-
-    #     text = ""
-    #     for i in range(x):
-    #         pageobj = pdfreader.getPage(i)
-    #         text += pageobj.extractText()
-
-
-        
-
-    #    
-
-    #     for note in notes:
-    #         if lecture == int(note.lecture):
-    #             return
-
-    #         # else:
-
-    #             #new_note = Note(classname, lecture, text)
-
-        
-    #     # add link to html text of notes in the final render template
-
-    # # return
 
 
 @app.route('/<classname>/posts', methods=['GET','POST'])

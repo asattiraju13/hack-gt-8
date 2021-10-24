@@ -18,6 +18,7 @@ corpus = "*"
 stop-words = "*"
 pypdf2 = "*"
 werkzeug = "*"
+tika = "*"
 
 [dev-packages]
 
