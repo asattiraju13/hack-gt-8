@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify, render_template, make_response, redirect
+from flask import Flask, request, jsonify, render_template, make_response, redirect, flash
+from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask import url_for
@@ -23,6 +24,9 @@ from stop_words import get_stop_words
 # stopwords.words('english')
 
 from model import NotesDoc
+
+UPLOAD_FOLDER = '/pdf'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -167,47 +171,67 @@ def dashboard():
 def get_classes(user):
     return User.query.get({'classes':user})
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/<classname>/notes',methods=['GET','POST'])
 def notess(classname):
     if request.method == 'POST':
         lecture = int(request.form.get("lecture"))
-
         files = request.files["file"]
 
-        # FIND THE PDF
-        app.config['pdf']
-        app.config['100000000']
+        app.config['UPLOAD_FOLDER'] = 'pdf'
+        app.config['MAX_CONTENT_PATH'] = 10000000
+
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+            return redirect(url_for('dashboard', name=filename))
+
+    return redirect(url_for('notess'))
+
+    #     # FIND THE PD
 
 
 
-        pdffileobj=open('1.pdf','rb')
+    #     pdffileobj=open('1.pdf','rb')
 
-        pdfreader=PyPDF2.PdfFileReader(pdffileobj)
-        x=pdfreader.numPages
+    #     pdfreader=PyPDF2.PdfFileReader(pdffileobj)
+    #     x=pdfreader.numPages
 
-        text = ""
-        for i in range(x):
-            pageobj = pdfreader.getPage(i)
-            text += pageobj.extractText()
+    #     text = ""
+    #     for i in range(x):
+    #         pageobj = pdfreader.getPage(i)
+    #         text += pageobj.extractText()
 
 
         
 
-        notes = Note.query.filter_by(class_name = classname).all()
+    #     notes = Note.query.filter_by(class_name = classname).all()
 
-        for note in notes:
-            if lecture == int(note.lecture):
-                return
+    #     for note in notes:
+    #         if lecture == int(note.lecture):
+    #             return
 
-            # else:
+    #         # else:
 
-                #new_note = Note(classname, lecture, text)
+    #             #new_note = Note(classname, lecture, text)
 
         
-        # add link to html text of notes in the final render template
+    #     # add link to html text of notes in the final render template
 
-    # return
+    # # return
 
 
 @app.route('/<classname>/posts', methods=['GET','POST'])
