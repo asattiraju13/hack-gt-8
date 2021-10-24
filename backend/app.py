@@ -139,7 +139,9 @@ def login_info():
         if user is not None:
 
             if user.password == psw:
-                return render_template('dashboard.html', variable = user.classes)
+                print(user.classes)
+                class_dict = {'class': user.classes}
+                return render_template('dashboard.html', variable =user.classes)
 
             else:
                 return redirect(url_for('login_info'))
