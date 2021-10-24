@@ -58,19 +58,22 @@
         }
 
         .leftcenter{
-        padding-left: 5%;
+        padding-left: 2%;
         align-items: center;
         justify-content: center;
         }
 
         label {
-        background-color: indigo;
+        background-color: #373737;
         color: white;
         padding: 0.5rem;
         font-family: sans-serif;
         border-radius: 0.3rem;
         cursor: pointer;
-        margin-top: 1rem;
+        height: 54px;
+        font-size: 42px;
+        display: inline-block;
+        /* margin-top: 1rem; */
         }
 
         #file-chosen{
@@ -240,10 +243,9 @@
         }
 
         .upload-button {
-            
             justify-content: center;
             margin-top: 3%;
-            margin-left: 40%;
+            margin-left: 36%;
         }
 
         h1 {
@@ -253,9 +255,16 @@
           background-color: #373737;
           border: none;
           border-radius: 6px;
-          width: 50%;
-          margin-left: 25%;
-      }
+          width: 55px;
+          height: 70px;
+          /* margin-left: 25%; */
+          }
+
+          input[type="text"] {
+          font-size:44px;
+          padding-bottom: 10px;
+          padding-top: 5px;
+          }
     </style>
     <script>
         window.onload = function () {
@@ -291,8 +300,8 @@
                 <div class="leftcenter">
                     <form action="{{url_for('notess'), classname = classname}}" method="post">
                         <!-- actual upload which is hidden -->
-                        <input type="file" id="actual-btn" hidden />
-                        <input type="text" id="lecture-number" placeholder="Lecture Number">
+                        <input type="file" id="actual-btn" name="file" hidden />
+                        <input type="text" id="lecture-number" placeholder="Lecture #" size="8" height=30>
                         <!-- our custom upload button -->
                         <label for="actual-btn">+</label>
                         <button class = "submit-box" type="submit">
