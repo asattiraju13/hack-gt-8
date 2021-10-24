@@ -299,7 +299,7 @@
                     <form action="{{url_for('notess', classname=classname)}}" method="post" enctype=multipart/form-data>
                         <!-- actual upload which is hidden -->
                         <input type="file" id="actual-btn" name="file" hidden />
-                        <input type="text" id="lecture-number" placeholder="Lecture #" size="8" height=30>
+                        <input type="text" id="lecture-number" placeholder="Lecture #" name = "lecture" size="8" height=30>
                         <!-- our custom upload button -->
                         <label for="actual-btn">+</label>
                         <button class = "submit-box" type="submit">
