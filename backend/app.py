@@ -178,11 +178,11 @@ def allowed_file(filename):
 @app.route('/<classname>/notes',methods=['GET','POST'])
 def notess(classname):
     if request.method == 'POST':
-        lecture = int(request.form.get("lecture"))
+        lecture = request.form.get("lecture")
         files = request.files["file"]
 
-        app.config['UPLOAD_FOLDER'] = 'pdf'
-        app.config['MAX_CONTENT_PATH'] = 10000000
+        app.config['UPLOAD_FOLDER'] = "pdf"
+        app.config['MAX_CONTENT_PATH'] = 1000000000000
 
         if 'file' not in request.files:
             flash('No file part')
@@ -196,10 +196,11 @@ def notess(classname):
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+            file.save(os.path.join("pdf", file.filename))
             return redirect(url_for('dashboard', name=filename))
 
-    return redirect(url_for('notess'))
+    notes = Note.query.filter_by(class_name = classname).all()
+    return render_template('notes.html', classname=classname, notes = notes)
 
     #     # FIND THE PD
 
@@ -218,7 +219,7 @@ def notess(classname):
 
         
 
-    #     notes = Note.query.filter_by(class_name = classname).all()
+    #    
 
     #     for note in notes:
     #         if lecture == int(note.lecture):
@@ -247,7 +248,7 @@ def postss(classname):
 
         posts = Post.query.filter_by(class_name = classname).all()
         posts = sorted(posts, key = lambda x: x.vote_count, reverse=True)    
-    return render_template('Posts.html')
+    return render_template('posts.html')
         
 if __name__ == "__main__":
     app.run(debug=True)

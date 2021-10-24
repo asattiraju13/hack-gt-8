@@ -285,16 +285,16 @@
         <h1>{{classname}}</h1>
         <div class ="header">
             <div class ="tabs">
-                <a class="post-button" href="http://127.0.0.1:5500/backend/templates/posts.html">
+                <a class="post-button" href="posts">
                     Posts
                 </a>
-                <a class="notes-button" href="http://127.0.0.1:5500/backend/templates/notes.html">
+                <a class="notes-button" href="notes">
                     Notes
                 </a>
             </div>
             </div>
             <div class="posts">
-            <form action="{{url_for('postss', classname = classname)}}" method="post">
+            <form action="{{url_for('postss', classname = classname)}}" method="post" enctype=multipart/form-data>
                 <div class="newpost"><br>
                     <label class="label" for="title">Title: </label><br />
                     <input class="input" type="text" id="title" name="title"><br><br />
