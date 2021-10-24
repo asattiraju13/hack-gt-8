@@ -136,7 +136,7 @@ class NotesDoc:
                 posn = 0
                 if last[j] != -1:
                     posn = js[last[j]][0]
-                if posn < len(final_raw):
+                if posn < len(final_raw)-1:
                     final_raw.insert(posn+1, raw_new_sentences[j])
                     final_processed.insert(posn+1, new_sentences[j])
                 else:
