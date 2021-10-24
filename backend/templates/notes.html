@@ -203,7 +203,7 @@
         .card1 {
             display: block;
             position: relative;
-            width: 262px;
+            width: 200px;
             background-color: #ffffff;
             border-radius: 8px;
             padding: 32px 24px;
@@ -245,7 +245,7 @@
         .upload-button {
             justify-content: center;
             margin-top: 3%;
-            margin-left: 36%;
+            margin-left: 30%;
         }
 
         h1 {
@@ -268,15 +268,13 @@
     </style>
     <script>
         window.onload = function () {
-            
-            classes = '{{ variable }}';
+            classes = '01, 02, 03, 04, 05, 06, 07';
             console.log('OK')
             // classes = "CS2051, ENGL 1102";
             var slides = classes.split(', ');
 
             slides.forEach(function (course) {
-                var str = '<a class="card1" href="/'
-                +course+'/posts"><p>';
+                var str = '<a class="card1" href="/' + course + '/posts"><p>';
                 str += course;
                 str += '</p><div class="go-corner" href="#"><div class="go-arrow">→</div></div></a>';
                 document.getElementById("container").innerHTML += str;
@@ -289,12 +287,12 @@
     <div class="home">
         <h1>Unified Notes.</h1>
         <div class ="tabs">
-            <button class="post-button">
+            <a class="post-button" href="http://127.0.0.1:5500/backend/templates/posts.html">
                 Posts
-            </button>
-            <button class="notes-button">
+            </a>
+            <a class="notes-button" href="http://127.0.0.1:5500/backend/templates/notes.html">
                 Notes
-            </button>
+            </a>
         </div>
             <div class="upload-button">
                 <div class="leftcenter">
@@ -310,9 +308,6 @@
                     </form>
                 </div>
             </div>
-
-        
-
         <div class="container" id="container">
 
         </div>
