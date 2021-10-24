@@ -10,11 +10,8 @@ from flask_sqlalchemy.model import Model
 import os
 from markupsafe import escape
 
-#Init app
-# Share ports
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
-
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -92,14 +89,14 @@ class PostSchema(ma.Schema):
 # class_schema = ClassSchema()
 # classes_schema = ClassSchema(many=True)
 
-note_schema = NoteSchema()
-notes_schema = NoteSchema(many=True)
+# note_schema = NoteSchema()
+# notes_schema = NoteSchema(many=True)
 
-post_schema = PostSchema()
-posts_schema = PostSchema(many=True)
+# post_schema = PostSchema()
+# posts_schema = PostSchema(many=True)
 
-user_schema = UserSchema()
-users_schema = UserSchema(many=True)
+# user_schema = UserSchema()
+# users_schema = UserSchema(many=True)
 
 db.create_all()
 
@@ -140,32 +137,44 @@ def login_info():
 
             if user.password == psw:
                 print(user.classes)
-                class_dict = {'class': user.classes}
-                return render_template('dashboard.html', variable =user.classes)
+                return render_template('dashboard.html', variable = user.classes)
 
             else:
                 return redirect(url_for('login_info'))
     
     return render_template('login.html')
 
-@app.route('/get_user/<user>', methods=['GET'])
-def get_classes(user):
-    return User.query.get({'classes':user})
 
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
     classes = request.cookies.get('classes')
     return render_template('dashboard.html', variable = classes)
 
+
+@app.route('/get_user/<user>', methods=['GET'])
+def get_classes(user):
+    return User.query.get({'classes':user})
+
+@app.route('/<classname>/notes',methods=['GET'])
+def notes(classname):
+    notes = Note.query.filter_by(class_name = classname).all()
+
+
+
 @app.route('/<classname>/posts', methods=['GET'])
 def posts(classname):
     posts = Post.query.filter_by(class_name = classname).all()
+    
+    for post in posts:
+        print(post)
 
-    return posts
+    return 
+
     #return render_template('posts.html', variable = posts)
 
     # IMPLEMENTING SORT
 
+#title, text, vote_count, class_name
 
         
 if __name__ == "__main__":
