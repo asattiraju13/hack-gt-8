@@ -34,13 +34,13 @@ class User(db.Model):
         self.password = password
         self.classes = classes
 
-class Class(db.Model):  # for the list of classes
-    __tablename__ = 'class'
-    class_id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String, unique = True)
+# class Class(db.Model):  # for the list of classes
+#     __tablename__ = 'class'
+#     class_id = db.Column(db.Integer, primary_key = True)
+#     name = db.Column(db.String, unique = True)
     
-    def __init__(self, name):
-        self.name = name
+#     def __init__(self, name):
+#         self.name = name
 
 class Post(db.Model):
     __tablename__ = 'post'
@@ -48,7 +48,7 @@ class Post(db.Model):
     title = db.Column(db.String)
     text = db.Column(db.String)
     vote_count = db.Column(db.Integer)
-    class_name = db.Column(db.String, db.ForeignKey('class.name'))
+    class_name = db.Column(db.String)
 
     def __init__(self, title, text, vote_count, class_name):
         self.title = title
@@ -59,7 +59,7 @@ class Post(db.Model):
 class Note(db.Model):
     __tablename__ = 'note'
     note_id = db.Column(db.Integer, primary_key = True)
-    class_name = db.Column(db.String, db.ForeignKey('class.name'))
+    class_name = db.Column(db.String)
     lecture = db.Column(db.Integer, primary_key = True)
     text = db.Column(db.String)
     imgs = db.Column(db.PickleType)
@@ -74,9 +74,9 @@ class UserSchema(ma.Schema):
     class Meta:
         fields = ('email','password','classes')
 
-class ClassSchema(ma.Schema):
-    class Meta:
-        fields = ('name',)
+# class ClassSchema(ma.Schema):
+#     class Meta:
+#         fields = ('name',)
 
 class NoteSchema(ma.Schema):
     class Meta:
@@ -86,8 +86,8 @@ class PostSchema(ma.Schema):
     class Meta:
         fields = ('title','text','vote_count')
 
-class_schema = ClassSchema()
-classes_schema = ClassSchema(many=True)
+# class_schema = ClassSchema()
+# classes_schema = ClassSchema(many=True)
 
 note_schema = NoteSchema()
 notes_schema = NoteSchema(many=True)
@@ -110,6 +110,7 @@ def signup_info():
         email = request.form.get("uname")
         psw = request.form.get("psw")
         psw = hashlib.sha256(psw.encode('utf-8')).hexdigest()
+        print(psw)
         classes = request.form.get("classes")
         classes = classes.split(",")[0]
 
@@ -129,17 +130,16 @@ def login_info():
     if request.method == 'POST':
         email = request.form.get("uname")
         psw = request.form.get("psw")
-        psw = hashlib.sha256(psw.encode())
-        print(email)
+        psw = hashlib.sha256(psw.encode('utf-8')).hexdigest()
+        print(psw)
         user = User.query.filter_by(email=email).first()
+        print(user.password)
         if user is not None:
-        # fetch classes
-            classes = Class.query.filter(Class.users.any(user_id=user.id)).all()
+     
+            classes = None # user.classes
 
             if user.password == psw:
-                resp = make_response(render_template('dashboard.html'), variable = classes)
-                resp.set_cookie('classes', classes)
-                return resp
+                return render_template('dashboard.html', variable = classes)
 
             else:
                 return redirect(url_for('login_info'))
