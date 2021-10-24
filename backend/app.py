@@ -22,52 +22,42 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
-user_to_classes = db.Table('user_to_classes',
-                          db.Column('user_id', db.Integer, db.ForeignKey('user.user_id')),
-                          db.Column('class_id', db.Integer, db.ForeignKey('class.class_id')))
-
-class_to_posts = db.Table('class_to_posts',
-                         db.Column('class_id',db.Integer, db.ForeignKey('class.class_id')),
-                         db.Column('post_id', db.Integer, db.ForeignKey('post.post_id')))
-
 class User(db.Model):
+    __tablename__ = 'user'
     user_id = db.Column(db.Integer, primary_key = True)
     email = db.Column(db.String)
     password = db.Column(db.String)
-    classes = db.relationship('Class', backref='user', lazy='dynamic', secondary=user_to_classes)
+    classes = db.Column(db.String)
 
     def __init__(self, email, password, classes):
         self.email = email
         self.password = password
         self.classes = classes
 
-class Class(db.Model):
+class Class(db.Model):  # for the list of classes
+    __tablename__ = 'class'
     class_id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, unique = True)
-    #notes = db.relationship('Note', backref='class', lazy=True, uselist=False)
-
-    users = db.relationship('User',secondary=user_to_classes, backref=db.backref('user_to_classes_backref', lazy='dynamic'))
     
-    def __init__(self, name, notes, users, posts):
+    def __init__(self, name):
         self.name = name
-        self.notes = notes
-        self.users = users
-        self.posts = posts
 
 class Post(db.Model):
+    __tablename__ = 'post'
     post_id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String)
     text = db.Column(db.String)
     vote_count = db.Column(db.Integer)
+    class_name = db.Column(db.String, db.ForeignKey('class.name'))
 
-    classes = db.relationship('Class',secondary=class_to_posts, backref=db.backref('class_to_posts_backref', lazy='dynamic'))
-
-    def __init__(self, title, text, vote_count):
+    def __init__(self, title, text, vote_count, class_name):
         self.title = title
         self.text = text
         self.vote_count = vote_count
+        self.class_name = class_name
 
 class Note(db.Model):
+    __tablename__ = 'note'
     note_id = db.Column(db.Integer, primary_key = True)
     class_name = db.Column(db.String, db.ForeignKey('class.name'))
     lecture = db.Column(db.Integer, primary_key = True)
@@ -79,11 +69,10 @@ class Note(db.Model):
         self.lecture = lecture
         self.text = text
         self.imgs = imgs
-        
 
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ('email','classes')
+        fields = ('email','password','classes')
 
 class ClassSchema(ma.Schema):
     class Meta:
@@ -109,8 +98,9 @@ posts_schema = PostSchema(many=True)
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
-@app.route('/')
+db.create_all()
 
+@app.route('/')
 def login():
     return redirect(url_for('login_info'))
 
@@ -119,10 +109,23 @@ def signup_info():
     if request.method == "POST":
         email = request.form.get("uname")
         psw = request.form.get("psw")
-        psw = hashlib.sha256(psw.encode())
+        psw = hashlib.sha256(psw.encode('utf-8')).hexdigest()
         classes = request.form.get("classes")
+        #classes = classes.split(",")[0]
 
-        # add to database
+        #User params: email, password, classes
+        print("\n\n\n\n\n\n\n\n\n\n\n")
+        print(User.__table__.columns)
+        new_user = User(email = email, password = psw, classes = classes)
+        print(User.__table__.columns)
+        db.session.add(new_user)
+        db.session.commit()
+
+        resp = make_response(render_template('dashboard.html'), variable = classes)
+        resp.set_cookie('classes', classes)
+        return resp
+
+    return render_template('signup.html')
 
 @app.route('/login',methods=['POST', 'GET'])
 def login_info():
@@ -139,9 +142,10 @@ def login_info():
             if user.password == psw:
                 resp = make_response(render_template('dashboard.html'), variable = classes)
                 resp.set_cookie('classes', classes)
-                return resp #dashboard
+                return resp
+
             else:
-                return redirect(url_for('hello_world'))
+                return redirect(url_for('login_info'))
     
     return render_template('login.html')
 
