@@ -4,61 +4,110 @@
     <title>Yatharth</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" />
     <style>
+        @import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+        label {
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        }
+
+        #file-chosen{
+        margin-left: 0.3rem;
+        font-family: sans-serif;
+        }
+
         @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
-        .modal.modal-wide .modal-dialog {
-            width: 60%;
+        * {
+        transition: all 0.3s ease-out;
         }
 
-        .modal-wide .modal-body {
-            overflow-y: auto;
-        }
-
-        /* irrelevant styling */
+        html,
         body {
-            text-align: center;
+        height: 100%;
+        background-color: #F8F0E3;
+        font-family: "Nunito", sans-serif;
+        font-size: 16px;
         }
 
-        body p {
-            max-width: 400px;
-            margin: 20px auto;
+        .container {
+        width: 900px;
+        height: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
         }
 
-        #tallModal .modal-body p {
-            margin-bottom: 900px
+        h3 {
+        color: #313131;
+        font-size: 17px;
+        line-height: 24px;
+        font-weight: 400;
+        margin-bottom: 4px;
+        }
+
+        p {
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 20px;
+        color: #404040;
+        }
+
+        small {
+        font-size: 14px;
+        }
+
+        h1 {
+        font-size: 70px;
+        text-align: left;
+        font-family: heading-font;
+        padding-left: 5%;
+        padding-top: 5rem;
+        color: #373737;
+        }
+
+        .leftcenter{
+        padding-left: 5%;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .animateTransitions {
+        transition: all 1s;
         }
     </style>
     <script>
-        $(".modal-wide").on("show.bs.modal", function() {
-            var height = $(window).height() - 200;
-            $(this).find(".modal-body").css("max-height", height);
-        });
+        const actualBtn = document.getElementById('actual-btn');
+
+        const fileChosen = document.getElementById('file-chosen');
+
+        actualBtn.addEventListener('change', function(){
+        fileChosen.textContent = this.files[0].name
+        })
     </script>
 </head>
 
 <body>
-    <a data-toggle="modal" href="#tallModal" class="btn btn-primary">Wide, Tall Content</a>
+    <div class="home">
+        <h1>Upload.</h1>
+        <div class="leftcenter">
+            <!-- actual upload which is hidden -->
+            <input type="file" id="actual-btn" hidden />
 
-    <div id="tallModal" class="modal modal-wide fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <iframe frameborder="0" scrolling="no" width="700" height="700"
-                        src="http://google.about.com/b/2013/04/01/google-nose.htm">
-                    </iframe>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            <!-- our custom upload button -->
+            <label for="actual-btn">Choose File</label>
+
+            <!-- name of file chosen -->
+            <span id="file-chosen">No file chosen</span>
+        </div>
+    </div>
 </body>
 </html>
