@@ -55,6 +55,9 @@ class Post(db.Model):
         self.text = text
         self.vote_count = vote_count
         self.class_name = class_name
+    
+    def __lt__(self, post):
+        self.vote_count > post.vote_count
 
 class Note(db.Model):
     __tablename__ = 'note'
@@ -155,7 +158,12 @@ def dashboard():
 @app.route('/<classname>/posts', methods=['GET'])
 def posts(classname):
     posts = Post.query.filter_by(class_name = classname).all()
-    return render_template('posts.html', variable = posts)
+
+    return posts
+    #return render_template('posts.html', variable = posts)
+
+    # IMPLEMENTING SORT
+
 
         
 if __name__ == "__main__":
