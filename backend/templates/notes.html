@@ -249,7 +249,13 @@
         h1 {
             font-family: heading-font;
         }
-
+        .submit-box {
+          background-color: #373737;
+          border: none;
+          border-radius: 6px;
+          width: 50%;
+          margin-left: 25%;
+      }
     </style>
     <script>
         window.onload = function () {
@@ -283,12 +289,15 @@
         </div>
             <div class="upload-button">
                 <div class="leftcenter">
-                    <form>
+                    <form action="{{url_for('notess'), classname = classname}}" method="post">
                         <!-- actual upload which is hidden -->
                         <input type="file" id="actual-btn" hidden />
                         <input type="text" id="lecture-number" placeholder="Lecture Number">
                         <!-- our custom upload button -->
                         <label for="actual-btn">+</label>
+                        <button class = "submit-box" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#F8F0E3"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+                        </button>
                     </form>
                 </div>
             </div>
