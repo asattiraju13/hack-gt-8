@@ -285,16 +285,16 @@
         <h1>{{classname}}</h1>
         <div class ="header">
             <div class ="tabs">
-                <button class="post-button">
+                <a class="post-button">
                     Posts
-                </button>
-                <button class="notes-button">
+                </a>
+                <a class="notes-button" href="/{{classname}}/notes">
                     Notes
-                </button>
+                </a>
             </div>
             </div>
             <div class="posts">
-            <form action="{{url_for('posts')}}" method="post">
+            <form action="{{url_for('postss', classname = classname)}}" method="post">
                 <div class="newpost"><br>
                     <label class="label" for="title">Title: </label><br />
                     <input class="input" type="text" id="title" name="title"><br>

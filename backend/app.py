@@ -169,7 +169,7 @@ def get_classes(user):
 
 
 @app.route('/<classname>/notes',methods=['GET','POST'])
-def notes(classname):
+def notess(classname):
     if request.method == 'POST':
         lecture = int(request.form.get("lecture"))
 
@@ -198,19 +198,20 @@ def notes(classname):
 
         for note in notes:
             if lecture == int(note.lecture):
+                return
 
-            else:
+            # else:
 
                 #new_note = Note(classname, lecture, text)
 
         
         # add link to html text of notes in the final render template
 
-    return
+    # return
 
 
 @app.route('/<classname>/posts', methods=['GET','POST'])
-def posts(classname):
+def postss(classname):
     if request.method == 'POST':
         title = request.form.get("title")
         text = request.form.get("text")
@@ -221,9 +222,7 @@ def posts(classname):
         db.session.commit()
 
         posts = Post.query.filter_by(class_name = classname).all()
-        posts = sorted(posts, key = lambda x: x.vote_count, reverse=True)
-        return render_template('Posts.html', variable = posts, name = classname)
-    
+        posts = sorted(posts, key = lambda x: x.vote_count, reverse=True)    
     return render_template('Posts.html')
         
 if __name__ == "__main__":
