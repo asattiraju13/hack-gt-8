@@ -162,18 +162,10 @@ def notes(classname):
 @app.route('/<classname>/posts', methods=['GET'])
 def posts(classname):
     posts = Post.query.filter_by(class_name = classname).all()
-    
-    for post in posts:
-        print(post)
+
+    posts = sorted(posts, key = lambda x: x.vote_count, reverse=True)
 
     return render_template('Posts.html', variable = posts)
-
-    #return render_template('posts.html', variable = posts)
-
-    # IMPLEMENTING SORT
-
-#title, text, vote_count, class_name
-
         
 if __name__ == "__main__":
     app.run(debug=True)
