@@ -27,7 +27,7 @@ class User(db.Model):
     user_id = db.Column(db.Integer, primary_key = True)
     email = db.Column(db.String)
     password = db.Column(db.String)
-    classes = db.Column(db.PickleType)
+    classes = db.Column(db.String)
 
     def __init__(self, email, password, classes):
         self.email = email
@@ -110,9 +110,8 @@ def signup_info():
         email = request.form.get("uname")
         psw = request.form.get("psw")
         psw = hashlib.sha256(psw.encode('utf-8')).hexdigest()
-        print(psw)
+
         classes = request.form.get("classes")
-        classes = classes.split(",")[0]
 
         #User params: email, password, classes
         new_user = User(email = email, password = psw, classes = classes)
@@ -131,15 +130,13 @@ def login_info():
         email = request.form.get("uname")
         psw = request.form.get("psw")
         psw = hashlib.sha256(psw.encode('utf-8')).hexdigest()
-        print(psw)
+
         user = User.query.filter_by(email=email).first()
-        print(user.password)
+
         if user is not None:
-     
-            classes = None # user.classes
 
             if user.password == psw:
-                return render_template('dashboard.html', variable = classes)
+                return render_template('dashboard.html', variable = user.classes)
 
             else:
                 return redirect(url_for('login_info'))

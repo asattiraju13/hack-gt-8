@@ -148,11 +148,12 @@
             <div class="login-heading">
                 <h1>Sign Up</h1>
             </div>
+            
             <form action="{{url_for('signup_info')}}" method="post">
                 <div class="container">
                     <input class = "input-box" type="text" placeholder="trenwhite@gatech.edu" name="uname" required>
                     <input class = "input-box" type="password" placeholder="Enter Password" name="psw" required>
-                    <input class = "input-box" type="list" placeholder="Enter Classes (CS 2051, CS 1332, etc.)" name="classes" required>
+                    <input class = "input-box" type="list" placeholder="Enter Classes" name="classes" required>
                         <button class = "submit-box" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#F8F0E3"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
                         </button>
