@@ -55,6 +55,9 @@ class Post(db.Model):
         self.text = text
         self.vote_count = vote_count
         self.class_name = class_name
+    
+    def __lt__(self, post):
+        self.vote_count > post.vote_count
 
 class Note(db.Model):
     __tablename__ = 'note'
