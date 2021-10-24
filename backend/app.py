@@ -118,7 +118,7 @@ def signup_info():
         db.session.add(new_user)
         db.session.commit()
 
-        resp = make_response(render_template('dashboard.html'), variable = classes)
+        resp = make_response(render_template('dashboard.html', variable = classes))
         resp.set_cookie('classes', classes)
         return resp
 
