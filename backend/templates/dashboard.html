@@ -2,16 +2,11 @@
 
 <head>
     <title>Yatharth</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <style>
-        @font-face {
-        font-family: heading-font;
-        src: url(TestTiemposHeadline-Regular.otf);
-        }
-
-        @font-face {
-        font-family: body-font;
-        src: url(Inconsolata-Regular.ttf);
-        }
+        @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
         * {
             transition: all 0.3s ease-out;
@@ -27,25 +22,24 @@
 
         .container {
             width: 100%;
-            height: 100%;
+            height: 300px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            margin-top: -10%;
         }
 
         h3 {
             color: #313131;
             font-size: 17px;
             line-height: 24px;
-            font-weight: 700;
+            font-weight: 400;
             margin-bottom: 4px;
         }
 
         p {
             font-size: 17px;
-            font-weight: 400;
+            font-weight: 700;
             line-height: 20px;
             color: #404040;
         }
@@ -82,15 +76,10 @@
             background-color: #ffffff;
             border-radius: 4px;
             padding: 32px 24px;
-            box-shadow: -1rem 0 1rem #000;
             margin: 12px;
             text-decoration: none;
             z-index: 0;
             overflow: hidden;
-        }
-
-        .card1:not(:first-child) {
-            margin-left: -50px;
         }
 
         .card1:before {
@@ -100,8 +89,8 @@
             top: -16px;
             right: -16px;
             background: #373737;
-            height: 50px;
-            width: 50px;
+            height: 40px;
+            width: 40px;
             border-radius: 40px;
             transform: scale(1);
             transform-origin: 50% 50%;
@@ -123,27 +112,38 @@
         }
 
         h1 {
-            font-size: 90px;
+            font-size: 70px;
             text-align: left;
             font-family: heading-font;
             padding-left: 5%;
-            padding-top: 2%;
-
+            padding-top: 5rem;
             color: #373737;
         }
 
-        h3 {
-            text-align: left;
-            font-family: heading-font;
-            padding-left: 5%;
+        .myDiv {
+            width: 310px;
+            height: 115px;
+            margin: 15px;
+        }
 
-            color: #373737;
+        .myDiv.fullscreen {
+            z-index: 9999;
+            width: 100% !important;
+            height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
+        }
+
+        .animateTransitions {
+            transition: all 1s;
         }
     </style>
     <script>
+        window.onload = function () {
+            var name = prompt("What's the course?")
 
-        var card = '<a class="card1" href="#"><h3>ENGL 1101</h3><p class="small">Card description with lots of great facts and interesting details.</p><div class="go-corner" href="#"><div class="go-arrow">→</div></div></a>';
-        document.getElementByClassName('container').innerHTML += card;
+            document.getElementById('var').innerHTML += name;
+        };
     </script>
 </head>
 
@@ -152,8 +152,8 @@
         <h1>Dashboard.</h1>
         <div class="container">
             <a class="card1" href="#">
-                <h3>ENGL 1101</h3>
-                <p class="small">Card description with lots of great facts and interesting details.</p>
+                <p>ENGL 1101</p>
+                <h3 class="small">Card description with lots of great facts and interesting details.</h3>
                 <div class="go-corner" href="#">
                     <div class="go-arrow">
                         →
@@ -161,26 +161,15 @@
                 </div>
             </a>
             <a class="card1" href="#">
-                <h3>CS 1331</h3>
-                <p class="small">Card description with lots of great facts and interesting details.</p>
+                <p id="var"></p>
+                <h3 class="small">Card description with lots of great facts and interesting details.</h3>
                 <div class="go-corner" href="#">
-                    <div class="go-arrow">
-                        →
-                    </div>
+                    <div class="go-arrow">→</div>
                 </div>
             </a>
             <a class="card1" href="#">
-                <h3>MATH 1554</h3>
-                <p class="small">Card description with lots of great facts and interesting details.</p>
-                <div class="go-corner" href="#">
-                    <div class="go-arrow">
-                        →
-                    </div>
-                </div>
-            </a>
-            <a class="card1" href="#">
-                <h3>MATH 1554</h3>
-                <p class="small">Card description with lots of great facts and interesting details.</p>
+                <p>MATH 1554</p>
+                <h3 class="small">Card description with lots of great facts and interesting details.</h3>
                 <div class="go-corner" href="#">
                     <div class="go-arrow">
                         →
@@ -190,4 +179,5 @@
         </div>
     </div>
 </body>
+
 </html>

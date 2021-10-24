@@ -39,6 +39,12 @@ export const ServiceWrapper = styled("div")`
 
 export const HeadingContent = styled("h6")`
   color: #373737;
+  @font-face {
+    font-family: heading-font;
+    src: url(TestTiemposHeadline-Regular.otf);
+  }
+  font-size: 70px;
+  font-family: heading-font;
 `;
 
 export const MinTitle = styled("h4")`

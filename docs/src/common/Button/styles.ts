@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const StyledButton = styled("button")<any>`
-  background: ${(p) => p.color || "#2e186a"};
-  color: ${(p) => (p.color ? "#2E186A" : "#fff")};
+  background: #373737;
+  color: #F8F0E3;
   font-size: 1rem;
   font-weight: 700;
   width: 100%;
-  border: 1px solid #edf3f5;
-  border-radius: 4px;
+  border: 0px solid #373737;
+  border-radius: 10px;
   padding: 13px 0;
   cursor: pointer;
   margin-top: 0.625rem;

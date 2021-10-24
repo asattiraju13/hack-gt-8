@@ -49,6 +49,7 @@ const Header = ({ t }: any) => {
         >
           <Span>
             <Button
+              color="#373737"
               onClick={() =>  window.location.href='http://127.0.0.1:5500/backend/templates/signup.html'}
             >{t("Login")}</Button>
           </Span>
@@ -58,6 +59,7 @@ const Header = ({ t }: any) => {
         >
           <Span>
             <Button
+              color="#373737"
               onClick={() =>  window.location.href='http://127.0.0.1:5500/backend/templates/signup.html'}
             >{t("Sign Up")}</Button>
           </Span>

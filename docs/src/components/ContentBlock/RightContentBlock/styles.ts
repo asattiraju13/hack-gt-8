@@ -7,7 +7,14 @@ export const WindowContainer = styled("div")`
 `;
 
 export const HeadingContent = styled("h6")`
+  @font-face {
+    font-family: heading-font;
+    src: url(../../../../.../TestTiemposHeadline-Regular.otf);
+  }
+  
   color: #F8F0E3;
+  font-size: 70px;
+  font-family: heading-font;
   padding:  40px;
 `;
 
