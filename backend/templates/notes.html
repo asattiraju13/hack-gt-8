@@ -1,0 +1,304 @@
+<html>
+
+<head>
+    <title>Yatharth</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+        * {
+            transition: all 0.3s ease-out;
+        }
+
+        html,
+        body {
+            height: 100%;
+            background-color: #F8F0E3;
+            font-family: "Nunito", sans-serif;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 80%px;
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h3 {
+            color: #313131;
+            font-size: 17px;
+            line-height: 24px;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        p {
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 20px;
+            color: #404040;
+        }
+
+        small {
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 70px;
+            text-align: left;
+            font-family: heading-font;
+            padding-left: 5%;
+            padding-top: 5rem;
+            color: #373737;
+        }
+
+        .leftcenter{
+        padding-left: 5%;
+        align-items: center;
+        justify-content: center;
+        }
+
+        label {
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        }
+
+        #file-chosen{
+        margin-left: 0.3rem;
+        font-family: sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+        * {
+        transition: all 0.3s ease-out;
+        }
+
+        html,
+        body {
+        height: 100%;
+        background-color: #F8F0E3;
+        font-family: "Nunito", sans-serif;
+        font-size: 16px;
+        }
+
+        .container {
+        width: 900px;
+        height: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        }
+
+        h3 {
+        color: #313131;
+        font-size: 17px;
+        line-height: 24px;
+        font-weight: 400;
+        margin-bottom: 4px;
+        }
+
+        p {
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 20px;
+        color: #404040;
+        }
+
+        small {
+        font-size: 14px;
+        }
+
+        h1 {
+        font-size: 70px;
+        text-align: left;
+        font-family: heading-font;
+        padding-left: 5%;
+        padding-top: 5rem;
+        color: #373737;
+        }
+
+        .leftcenter{
+        padding-left: 5%;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .animateTransitions {
+        transition: all 1s;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1%;
+        }
+
+        
+        .notes-button {
+            padding-left: 3%;
+            padding-right: 3%;
+            background: #373737;
+            border: 4px solid #373737;
+            box-sizing: border-box;
+            border-radius: 13px;
+            color: #F8F0E3;
+            font-family: body-font;
+        }
+
+        .post-button {
+            margin-right: 3%;
+            padding-left: 3%;
+            padding-right: 3%;
+            border: 3px solid #373737;
+            box-sizing: border-box;
+            border-radius: 13px;
+            color: #373737;
+            font-family: body-font;
+        }
+
+        label {
+            padding-left: 1%;
+            padding-right: 1%;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            background-color: #373737;
+        }
+
+        .go-corner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            overflow: hidden;
+            top: 0;
+            right: 0;
+            background-color: #373737;
+            border-radius: 0 4px 0 32px;
+        }
+
+        .go-arrow {
+            margin-top: -4px;
+            margin-right: -4px;
+            color: #F8F0E3;
+            font-family: courier, sans;
+        }
+
+        .card1 {
+            display: block;
+            position: relative;
+            width: 262px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 32px 24px;
+            margin: 12px;
+            text-decoration: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .card1:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: -16px;
+            right: -16px;
+            background: #373737;
+            height: 40px;
+            width: 40px;
+            border-radius: 40px;
+            transform: scale(1);
+            transform-origin: 50% 50%;
+            transition: transform 0.25s ease-out;
+        }
+
+        .card1:hover:before {
+            transform: scale(21);
+        }
+
+        .card1:hover p {
+            transition: all 0.3s ease-out;
+            color: rgba(248, 240, 227, 0.75);
+        }
+
+        .card1:hover h3 {
+            transition: all 0.3s ease-out;
+            color: #F8F0E3;
+        }
+
+        .upload-button {
+            
+            justify-content: center;
+            margin-top: 3%;
+            margin-left: 40%;
+        }
+
+        h1 {
+            font-family: heading-font;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            
+            classes = '{{ variable }}';
+            console.log('OK')
+            // classes = "CS2051, ENGL 1102";
+            var slides = classes.split(', ');
+
+            slides.forEach(function (course) {
+                var str = '<a class="card1" href="/'
+                +course+'/posts"><p>';
+                str += course;
+                str += '</p><div class="go-corner" href="#"><div class="go-arrow">→</div></div></a>';
+                document.getElementById("container").innerHTML += str;
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <div class="home">
+        <h1>Unified Notes.</h1>
+        <div class ="tabs">
+            <button class="post-button">
+                Posts
+            </button>
+            <button class="notes-button">
+                Notes
+            </button>
+        </div>
+            <div class="upload-button">
+                <div class="leftcenter">
+                    <form>
+                        <!-- actual upload which is hidden -->
+                        <input type="file" id="actual-btn" hidden />
+                        <input type="text" id="lecture-number" placeholder="Lecture Number">
+                        <!-- our custom upload button -->
+                        <label for="actual-btn">+</label>
+                    </form>
+                </div>
+            </div>
+
+        
+
+        <div class="container" id="container">
+
+        </div>
+    </div>
+</body>
+
+</html>
