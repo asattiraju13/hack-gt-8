@@ -162,6 +162,8 @@
             padding-top: 3%;
             overflow: auto;
             height: 50vh;
+            padding-bottom: 20%;
+
         }
 
         .post {
@@ -169,27 +171,72 @@
             border-radius: 40px;
             width: 40%;
             margin-bottom: 4%;
+            display: grid;
+            grid-template-columns: [one] 80% [two] 20%;
+            grid-template-rows: [row1] 33% [row2] 33% [row3] 33%;
         }
 
         .post-title {
             color: #F8F0E3;
             font-family: heading-font;
             font-size: 40px;
+            grid-column-start: 1;
+            grid-column-end: span 1;
+            padding-bottom: 20%;
+
         }
 
         .post-body {
             font-family: body-font;
             padding-left: 4%;
+            grid-column-start: 1;
+            grid-column-end: 2;
+            overflow-wrap: break-word;
+        }
+
+        .up-arrow {
+            grid-column-start: 2;
+            grid-column-end: span 1;
+            grid-row-start: 1;
+            grid-row-end: span 1;
+        }
+
+        .upvote-count {
+            padding-left: 20%;
+            grid-column-start: 2;
+            grid-row-start: 2;
+            grid-row-end: span 1;
         }
 
         .header {
             display: flex;
             flex-direction: column;
             justify-content: center;    
-            
+        }
+
+        label {
+            background-color: #373737;
+            color: white;
+            padding: 0.5rem;
+            font-family: sans-serif;
+            border-radius: 0.3rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        #file-chosen{
+            margin-left: 0.3rem;
+            font-family: sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+        .leftcenter{
+            padding-left: 5%;
+            align-items: center;
+            justify-content: center;
         }
 	</style>
-	
   </head>
   <body>
 	<div class="home">
@@ -204,10 +251,20 @@
                 </button>
             </div>
             <div class="upload-button">
-                <svg class="plus-svg" width="67" height="66" viewBox="0 0 67 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class="leftcenter">
+                    <!-- actual upload which is hidden -->
+                    <input type="file" id="actual-btn" hidden />
+        
+                    <!-- our custom upload button -->
+                    <label for="actual-btn">Choose File</label>
+        
+                    <!-- name of file chosen -->
+                    <span id="file-chosen">No file chosen</span>
+                </div>
+                <!-- <svg class="plus-svg" width="67" height="66" viewBox="0 0 67 66" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M28.0305 5.38776C28.0305 2.41218 30.4792 0 33.4999 0C36.5205 0 38.9693 2.41218 38.9693 5.38775V60.6122C38.9693 63.5878 36.5205 66 33.4999 66C30.4792 66 28.0305 63.5878 28.0305 60.6122V5.38776Z" fill="#F8F0E3"/>
                     <path d="M5.47889 37.7622C2.45823 37.7673 0.00525006 35.3593 8.41394e-06 32.3838C-0.00523324 29.4082 2.43925 26.9918 5.4599 26.9867L61.5211 26.8908C64.5418 26.8857 66.9948 29.2937 67 32.2692C67.0052 35.2448 64.5608 37.6612 61.5401 37.6663L5.47889 37.7622Z" fill="#F8F0E3"/>
-                </svg>
+                </svg> -->
             </div>
             </div>
             <div class="posts">
@@ -215,9 +272,12 @@
                     <h1 class="post-title">Ronnie was so good today!</h1>
                     <p class="post-body">The part with the proof that shows your mom...so good kfasdhf asduhf aoisdhfa idshfiasdifajsdifjadisfjasisdjfaisdjfiasjdfiajsdifjadsijfaisdjfiajdsfiajdsifjasdifjasidjfaidjfasdfi</p>
                 
-                    <svg width="56" height="57" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class = "up-arrow" width="56" height="57" viewBox="0 0 56 57" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.0654 33.1227L17.3025 36.3187L27.7066 25.8039L38.2441 36.1852L41.4401 32.9481L27.6654 19.3481L14.0654 33.1227Z" fill="#F8F0E3"/>
                     </svg>
+                    <h3 class="upvote-count">64</h3>
+
+
                         
                 </div>
 
