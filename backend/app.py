@@ -157,7 +157,13 @@ def dashboard():
 @app.route('/<classname>/posts', methods=['GET'])
 def posts(classname):
     posts = Post.query.filter_by(class_name = classname).all()
-    return render_template('posts.html', variable = posts)
+    return render_template('posts.html', posts = posts, classname = classname)
+
+@app.route('/<classname>/notes', methods=['GET'])
+def notes(classname):
+    notes = Note.query.filter_by(class_name = classname).all()
+    return render_template('notes.html', posts = posts, classname = classname)
+
 
         
 if __name__ == "__main__":
