@@ -5,10 +5,24 @@ from flask import url_for
 import sqlalchemy.dialects.sqlite
 import hashlib
 
+import PyPDF2
+
 from flask_sqlalchemy.model import Model
 
 import os
 from markupsafe import escape
+
+import re
+import math
+import numpy as np
+
+import nltk
+from stop_words import get_stop_words
+
+# from nltk.corpus import stopwords
+# stopwords.words('english')
+
+from model import NotesDoc
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -157,10 +171,41 @@ def get_classes(user):
 @app.route('/<classname>/notes',methods=['GET','POST'])
 def notes(classname):
     if request.method == 'POST':
-        # # lecture, text, add to db
-        lecture = request.form.get("lecture")
+        lecture = int(request.form.get("lecture"))
 
-    notes = Note.query.filter_by(class_name = classname).all()
+        files = request.files["file"]
+
+        # FIND THE PDF
+        app.config['pdf']
+        app.config['100000000']
+
+
+
+        pdffileobj=open('1.pdf','rb')
+
+        pdfreader=PyPDF2.PdfFileReader(pdffileobj)
+        x=pdfreader.numPages
+
+        text = ""
+        for i in range(x):
+            pageobj = pdfreader.getPage(i)
+            text += pageobj.extractText()
+
+
+        
+
+        notes = Note.query.filter_by(class_name = classname).all()
+
+        for note in notes:
+            if lecture == int(note.lecture):
+
+            else:
+
+                #new_note = Note(classname, lecture, text)
+
+        
+        # add link to html text of notes in the final render template
+
     return
 
 

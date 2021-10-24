@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "06c57d2f1ff93acc5dfd170480484b3abd288b6cf7f3afda84a0f827a3560418"
+            "sha256": "4ccafe1c3beb7573c89cbe2a61e169476e4c7baefeab9017c0c366fb3c0d0fb5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -472,6 +472,13 @@
             "markers": "python_version >= '3.6'",
             "version": "==3.0.0"
         },
+        "pypdf2": {
+            "hashes": [
+                "sha256:e28f902f2f0a1603ea95ebe21dff311ef09be3d0f0ef29a3e44a932729564385"
+            ],
+            "index": "pypi",
+            "version": "==1.26.0"
+        },
         "regex": {
             "hashes": [
                 "sha256:0c186691a7995ef1db61205e00545bf161fb7b59cdb8c1201c89b333141c438a",
@@ -690,6 +697,13 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==2.4.2"
+        },
+        "stop-words": {
+            "hashes": [
+                "sha256:6df3ad5f5de697daa437e4445c86c73604e6bc138dd0dc0fac55664aa4e6b03e"
+            ],
+            "index": "pypi",
+            "version": "==2018.7.23"
         },
         "thinc": {
             "hashes": [

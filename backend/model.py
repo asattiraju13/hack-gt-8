@@ -1,29 +1,74 @@
 #!/usr/bin/env python
 # coding: utf-8
+import re
+import math
+import numpy as np
 
-import spacy
+from stop_words import get_stop_words
+stop_words = set(get_stop_words('en'))
+
+def tokenize(string):
+    string = re.sub(r'[^\w\s]','',string.lower())
+    return string.split(" ")
+
+def idf(documents):
+    count = {}
+    for doc in documents:
+        for word in set(tokenize(doc)):
+            if word in count:
+                count[word] += 1
+            else:
+                count[word] = 1
+    for c, k in count.items():
+        count[c] = math.log(len(documents)/k)
+    return count
+
+def tf(document):
+    document = tokenize(document)
+    d = {}
+    for word in document:
+        if word in d:
+            d[word] += 1
+        else:
+            d[word] = 1
+    for k, v in d.items():
+        d[k] = v/len(document)
+    return d
+
+def tfidf(s1, s2, idf):
+    t1 = tf(s1)
+    t2 = tf(s2)
+    out1 = []
+    out2 = []
+    words = set(tokenize(s1) + tokenize(s2))
+    for word in words:
+#         print(word)
+        if word in t1:
+            out1.append(t1[word] * idf[word])
+        else:
+            out1.append(0)
+        if word in t2:
+            out2.append(t2[word] *idf[word])
+        else:
+            out2.append(0)
+    return out1, out2
+
+def similarity(s1, s2, idf):
+    s1, s2 = tfidf(s1, s2, idf)
+    s1, s2 = np.array(s1), np.array(s2)
+    return np.dot(s1, s2)/(np.linalg.norm(s1)*np.linalg.norm(s2))
+
 import nltk
-from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer
-from nltk.corpus import stopwords
 
-nlp = spacy.load('en_core_web_sm')
-
-stop = stopwords.words("english")
+tokenizer = nltk.RegexpTokenizer(r"\w+")
 
 def remove_stop(string):
     new = []
     for i in string.split(' '):
-        if i not in stop:
+        if i not in stop_words:
             new.append(i)
     return ' '.join(new)
 
-def similarity(s1, s2):
-    s1 = nlp(remove_stop(s1))
-    s2 = nlp(remove_stop(s2))
-    return s1.similarity(s2)
-
-tokenizer = nltk.RegexpTokenizer(r"\w+")
 CUTOFF = 0.9
 
 class NotesDoc:
@@ -35,6 +80,7 @@ class NotesDoc:
             processed_sentences.append(' '.join(tokenizer.tokenize(remove_stop(v.lower()))))
 #         print(sentences)
         self.processed_sentences = processed_sentences
+        self.idf = idf(self.processed_sentences)
         
     def update(self, new_string):
         raw_new_sentences = new_string.split(". ")
@@ -42,11 +88,22 @@ class NotesDoc:
         for i, v in enumerate(raw_new_sentences):
             new_sentences.append(' '.join(tokenizer.tokenize(remove_stop(v.lower()))))
         print(new_sentences)
+        self.idf = idf(self.processed_sentences + new_sentences)
         similarities = [[0 for i in range(len(new_sentences))] for j in range(len(self.processed_sentences))]
         for i, v in enumerate(self.processed_sentences):
             for j, w in enumerate(new_sentences):
-                similarities[i][j] = similarity(v, w)
-        print(similarities)
+                similarities[i][j] = similarity(v, w, self.idf)
+        s = [-1 for j in range(len(similarities[0]))]
+        for i in range(len(similarities)):
+            for j in range(len(similarities[0])):
+                s[j] = max(s[j], similarities[i][j])
+        for i in range(len(similarities)):
+            for j in range(len(similarities)):
+                print(self.processed_sentences[i])
+                print(new_sentences[j])
+                print(similarities[i][j])
+                print()
+        print(s)
         similar_pairs = []
         js = {}
         for i in range(len(similarities)):
@@ -57,7 +114,7 @@ class NotesDoc:
                         js[j] = i
        
         """
-        Make it add it at the proper point
+        TODO: Make it add it at the proper point
         """
         last = [-1 for i in range(len(new_sentences))]
         for j in range(len(new_sentences)):
@@ -80,3 +137,5 @@ class NotesDoc:
                 final_processed.insert(posn, new_sentences[j])
         self.raw_sentences = final_raw
         self.processed_sentences = final_processed
+        
+
