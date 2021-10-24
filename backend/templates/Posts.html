@@ -267,6 +267,18 @@
         font-size: 20px;
         }
 	</style>
+    <script>
+        window.onload = function () {
+            posts = '{{ variable }}';
+            console.log('OK')
+            // classes = "CS2051, ENGL 1102";
+
+            posts.forEach(function (post) {
+                var str = '<div class="post"><h1 class="post-title">' + post.title + '</h1><p class="post-body">' + post.text + '</p><svg class="up-arrow" width="56" height="57" viewBox="0 0 56 57" fill="none"xmlns="http://www.w3.org/2000/svg"><path d="M14.0654 33.1227L17.3025 36.3187L27.7066 25.8039L38.2441 36.1852L41.4401 32.9481L27.6654 19.3481L14.0654 33.1227Z" fill="#F8F0E3" /></svg><h3 class="upvote-count">' + post.vote_count + '64</h3></div>';
+                document.getElementById("header").innerHTML += str;
+            });
+        };
+    </script>
   </head>
   <body>
 	<div class="home">
