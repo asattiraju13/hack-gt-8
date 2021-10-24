@@ -27,7 +27,7 @@ class User(db.Model):
     user_id = db.Column(db.Integer, primary_key = True)
     email = db.Column(db.String)
     password = db.Column(db.String)
-    classes = db.Column(db.String)
+    classes = db.Column(db.PickleType)
 
     def __init__(self, email, password, classes):
         self.email = email
@@ -111,13 +111,10 @@ def signup_info():
         psw = request.form.get("psw")
         psw = hashlib.sha256(psw.encode('utf-8')).hexdigest()
         classes = request.form.get("classes")
-        #classes = classes.split(",")[0]
+        classes = classes.split(",")[0]
 
         #User params: email, password, classes
-        print("\n\n\n\n\n\n\n\n\n\n\n")
-        print(User.__table__.columns)
         new_user = User(email = email, password = psw, classes = classes)
-        print(User.__table__.columns)
         db.session.add(new_user)
         db.session.commit()
 
