@@ -159,8 +159,6 @@ def get_classes(user):
 def notes(classname):
     notes = Note.query.filter_by(class_name = classname).all()
 
-
-
 @app.route('/<classname>/posts', methods=['GET'])
 def posts(classname):
     posts = Post.query.filter_by(class_name = classname).all()
@@ -168,7 +166,7 @@ def posts(classname):
     for post in posts:
         print(post)
 
-    return 
+    return render_template('Posts.html', variable = posts)
 
     #return render_template('posts.html', variable = posts)
 
