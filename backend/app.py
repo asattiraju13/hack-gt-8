@@ -182,7 +182,7 @@ def notess(classname):
     notes = Note.query.filter_by(class_name = classname).all()
     if request.method == 'POST':
         lecture = request.form.get("lecture")
-        files = request.files["file"]
+        print(lecture)
 
         app.config['UPLOAD_FOLDER'] = "pdf"
         app.config['MAX_CONTENT_PATH'] = 1000000000000
@@ -212,6 +212,9 @@ def notess(classname):
                     note.text = new_text
                     return render_template('notes.html', classname=classname, notes=notes)
 
+            print(classname)
+            print(lecture)
+            #print(text['content'])
             note = Note(classname,lecture,text['content'])
 
             db.session.add(note)
