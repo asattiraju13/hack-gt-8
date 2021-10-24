@@ -17,6 +17,7 @@ sklearn = "*"
 corpus = "*"
 stop-words = "*"
 pypdf2 = "*"
+werkzeug = "*"
 
 [dev-packages]
 
