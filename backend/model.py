@@ -111,7 +111,10 @@ class NotesDoc:
                 if s >= CUTOFF:
                     similar_pairs.append((i, j))
                     if j not in js:
-                        js[j] = i
+                        js[j] = (i, s)
+                    else:
+                        if s > js[j][1]:
+                            js[j] = (i, s)
        
         """
         TODO: Make it add it at the proper point
@@ -132,10 +135,12 @@ class NotesDoc:
             if j not in js:
                 posn = 0
                 if last[j] != -1:
-                    posn = js[last[j]]
-                final_raw.insert(posn, raw_new_sentences[j])
-                final_processed.insert(posn, new_sentences[j])
+                    posn = js[last[j]][0]
+                if posn < len(final_raw):
+                    final_raw.insert(posn+1, raw_new_sentences[j])
+                    final_processed.insert(posn+1, new_sentences[j])
+                else:
+                    final_raw.append(raw_new_sentences[j])
+                    final_processed.append(new_sentences[j])
         self.raw_sentences = final_raw
         self.processed_sentences = final_processed
-        
-
